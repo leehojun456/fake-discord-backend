@@ -51,9 +51,7 @@ export class FriendService {
     return { message: '친구가 성공적으로 추가되었습니다.' };
   }
 
-  async findAll() {
-    const userId = 2001; // 예시로 userId를 1로 설정
-
+  async findAll(userId: number) {
     // 친구 목록 조회
     const rawFriends = await this.prismaService.friend.findMany({
       where: { userId: userId },
