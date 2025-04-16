@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  userid    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  enabled   Boolean  @default(true)
+
+  friends          Friend[]            @relation("UserFriends") // 내가 친구를 추가한 목록
+  friendOf         Friend[]            @relation("FriendOfUser") // 나를 친구로 추가한 목록
+  personalChannels Personal_Channels[] @relation("id") // 내가 추가한 채널 목록
+
+  Personal_Channels_Users Personal_Channels_Users[] @relation("id")
+
+  Personal_Channels_List Personal_Channels_List[] @relation("id")
+}
+
+model Friend {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  friendId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User @relation("UserFriends", fields: [userId], references: [id]) // 친구를 추가한 사용자
+  friend User @relation("FriendOfUser", fields: [friendId], references: [id]) // 추가된 친구 사용자
+}
+
+model Personal_Channels {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  enabled   Boolean  @default(true)
+  user      User     @relation("id", fields: [userId], references: [id]) // 채널을 추가한 사용자
+
+  Personal_Channels_Users Personal_Channels_Users[] @relation("id")
+
+  Personal_Channels_List Personal_Channels_List[] @relation("id")
+}
+
+model Personal_Channels_Users {
+  id        Int               @id @default(autoincrement())
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  userId    Int
+  channelId Int
+  enabled   Boolean           @default(true)
+  user      User              @relation("id", fields: [userId], references: [id]) // 채널을 추가한 사용자
+  channel   Personal_Channels @relation("id", fields: [channelId], references: [id]) // 추가된 채널
+}
+
+model Personal_Channels_List {
+  id        Int               @id @default(autoincrement())
+  userId    Int
+  channelId Int
+  enabled   Boolean           @default(true)
+  user      User              @relation("id", fields: [userId], references: [id]) // 채널을 추가한 사용자
+  channel   Personal_Channels @relation("id", fields: [channelId], references: [id]) // 추가된 채널
+}
