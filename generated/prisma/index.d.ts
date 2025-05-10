@@ -38,6 +38,11 @@ export type Personal_Channels_Users = $Result.DefaultSelection<Prisma.$Personal_
  * 
  */
 export type Personal_Channels_List = $Result.DefaultSelection<Prisma.$Personal_Channels_ListPayload>
+/**
+ * Model Personal_Channels_Chat
+ * 
+ */
+export type Personal_Channels_Chat = $Result.DefaultSelection<Prisma.$Personal_Channels_ChatPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +218,16 @@ export class PrismaClient<
     * ```
     */
   get personal_Channels_List(): Prisma.Personal_Channels_ListDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.personal_Channels_Chat`: Exposes CRUD operations for the **Personal_Channels_Chat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Personal_Channels_Chats
+    * const personal_Channels_Chats = await prisma.personal_Channels_Chat.findMany()
+    * ```
+    */
+  get personal_Channels_Chat(): Prisma.Personal_Channels_ChatDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +672,8 @@ export namespace Prisma {
     Friend: 'Friend',
     Personal_Channels: 'Personal_Channels',
     Personal_Channels_Users: 'Personal_Channels_Users',
-    Personal_Channels_List: 'Personal_Channels_List'
+    Personal_Channels_List: 'Personal_Channels_List',
+    Personal_Channels_Chat: 'Personal_Channels_Chat'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "friend" | "personal_Channels" | "personal_Channels_Users" | "personal_Channels_List"
+      modelProps: "user" | "friend" | "personal_Channels" | "personal_Channels_Users" | "personal_Channels_List" | "personal_Channels_Chat"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1010,6 +1026,72 @@ export namespace Prisma {
           }
         }
       }
+      Personal_Channels_Chat: {
+        payload: Prisma.$Personal_Channels_ChatPayload<ExtArgs>
+        fields: Prisma.Personal_Channels_ChatFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.Personal_Channels_ChatFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Personal_Channels_ChatPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.Personal_Channels_ChatFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Personal_Channels_ChatPayload>
+          }
+          findFirst: {
+            args: Prisma.Personal_Channels_ChatFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Personal_Channels_ChatPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.Personal_Channels_ChatFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Personal_Channels_ChatPayload>
+          }
+          findMany: {
+            args: Prisma.Personal_Channels_ChatFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Personal_Channels_ChatPayload>[]
+          }
+          create: {
+            args: Prisma.Personal_Channels_ChatCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Personal_Channels_ChatPayload>
+          }
+          createMany: {
+            args: Prisma.Personal_Channels_ChatCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.Personal_Channels_ChatDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Personal_Channels_ChatPayload>
+          }
+          update: {
+            args: Prisma.Personal_Channels_ChatUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Personal_Channels_ChatPayload>
+          }
+          deleteMany: {
+            args: Prisma.Personal_Channels_ChatDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.Personal_Channels_ChatUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.Personal_Channels_ChatUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Personal_Channels_ChatPayload>
+          }
+          aggregate: {
+            args: Prisma.Personal_Channels_ChatAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePersonal_Channels_Chat>
+          }
+          groupBy: {
+            args: Prisma.Personal_Channels_ChatGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Personal_Channels_ChatGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.Personal_Channels_ChatCountArgs<ExtArgs>
+            result: $Utils.Optional<Personal_Channels_ChatCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1099,6 +1181,7 @@ export namespace Prisma {
     personal_Channels?: Personal_ChannelsOmit
     personal_Channels_Users?: Personal_Channels_UsersOmit
     personal_Channels_List?: Personal_Channels_ListOmit
+    personal_Channels_Chat?: Personal_Channels_ChatOmit
   }
 
   /* Types for Logging */
@@ -1198,6 +1281,7 @@ export namespace Prisma {
     personalChannels: number
     Personal_Channels_Users: number
     Personal_Channels_List: number
+    Personal_Channels_Chat: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1206,6 +1290,7 @@ export namespace Prisma {
     personalChannels?: boolean | UserCountOutputTypeCountPersonalChannelsArgs
     Personal_Channels_Users?: boolean | UserCountOutputTypeCountPersonal_Channels_UsersArgs
     Personal_Channels_List?: boolean | UserCountOutputTypeCountPersonal_Channels_ListArgs
+    Personal_Channels_Chat?: boolean | UserCountOutputTypeCountPersonal_Channels_ChatArgs
   }
 
   // Custom InputTypes
@@ -1254,6 +1339,13 @@ export namespace Prisma {
     where?: Personal_Channels_ListWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPersonal_Channels_ChatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Personal_Channels_ChatWhereInput
+  }
+
 
   /**
    * Count Type Personal_ChannelsCountOutputType
@@ -1262,11 +1354,13 @@ export namespace Prisma {
   export type Personal_ChannelsCountOutputType = {
     Personal_Channels_Users: number
     Personal_Channels_List: number
+    Personal_Channels_Chat: number
   }
 
   export type Personal_ChannelsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Personal_Channels_Users?: boolean | Personal_ChannelsCountOutputTypeCountPersonal_Channels_UsersArgs
     Personal_Channels_List?: boolean | Personal_ChannelsCountOutputTypeCountPersonal_Channels_ListArgs
+    Personal_Channels_Chat?: boolean | Personal_ChannelsCountOutputTypeCountPersonal_Channels_ChatArgs
   }
 
   // Custom InputTypes
@@ -1292,6 +1386,13 @@ export namespace Prisma {
    */
   export type Personal_ChannelsCountOutputTypeCountPersonal_Channels_ListArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: Personal_Channels_ListWhereInput
+  }
+
+  /**
+   * Personal_ChannelsCountOutputType without action
+   */
+  export type Personal_ChannelsCountOutputTypeCountPersonal_Channels_ChatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Personal_Channels_ChatWhereInput
   }
 
 
@@ -1526,6 +1627,7 @@ export namespace Prisma {
     personalChannels?: boolean | User$personalChannelsArgs<ExtArgs>
     Personal_Channels_Users?: boolean | User$Personal_Channels_UsersArgs<ExtArgs>
     Personal_Channels_List?: boolean | User$Personal_Channels_ListArgs<ExtArgs>
+    Personal_Channels_Chat?: boolean | User$Personal_Channels_ChatArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1549,6 +1651,7 @@ export namespace Prisma {
     personalChannels?: boolean | User$personalChannelsArgs<ExtArgs>
     Personal_Channels_Users?: boolean | User$Personal_Channels_UsersArgs<ExtArgs>
     Personal_Channels_List?: boolean | User$Personal_Channels_ListArgs<ExtArgs>
+    Personal_Channels_Chat?: boolean | User$Personal_Channels_ChatArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1560,6 +1663,7 @@ export namespace Prisma {
       personalChannels: Prisma.$Personal_ChannelsPayload<ExtArgs>[]
       Personal_Channels_Users: Prisma.$Personal_Channels_UsersPayload<ExtArgs>[]
       Personal_Channels_List: Prisma.$Personal_Channels_ListPayload<ExtArgs>[]
+      Personal_Channels_Chat: Prisma.$Personal_Channels_ChatPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1915,6 +2019,7 @@ export namespace Prisma {
     personalChannels<T extends User$personalChannelsArgs<ExtArgs> = {}>(args?: Subset<T, User$personalChannelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Personal_ChannelsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Personal_Channels_Users<T extends User$Personal_Channels_UsersArgs<ExtArgs> = {}>(args?: Subset<T, User$Personal_Channels_UsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Personal_Channels_UsersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Personal_Channels_List<T extends User$Personal_Channels_ListArgs<ExtArgs> = {}>(args?: Subset<T, User$Personal_Channels_ListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Personal_Channels_ListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Personal_Channels_Chat<T extends User$Personal_Channels_ChatArgs<ExtArgs> = {}>(args?: Subset<T, User$Personal_Channels_ChatArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2412,6 +2517,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Personal_Channels_ListScalarFieldEnum | Personal_Channels_ListScalarFieldEnum[]
+  }
+
+  /**
+   * User.Personal_Channels_Chat
+   */
+  export type User$Personal_Channels_ChatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    where?: Personal_Channels_ChatWhereInput
+    orderBy?: Personal_Channels_ChatOrderByWithRelationInput | Personal_Channels_ChatOrderByWithRelationInput[]
+    cursor?: Personal_Channels_ChatWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Personal_Channels_ChatScalarFieldEnum | Personal_Channels_ChatScalarFieldEnum[]
   }
 
   /**
@@ -3613,6 +3742,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     Personal_Channels_Users?: boolean | Personal_Channels$Personal_Channels_UsersArgs<ExtArgs>
     Personal_Channels_List?: boolean | Personal_Channels$Personal_Channels_ListArgs<ExtArgs>
+    Personal_Channels_Chat?: boolean | Personal_Channels$Personal_Channels_ChatArgs<ExtArgs>
     _count?: boolean | Personal_ChannelsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["personal_Channels"]>
 
@@ -3631,6 +3761,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     Personal_Channels_Users?: boolean | Personal_Channels$Personal_Channels_UsersArgs<ExtArgs>
     Personal_Channels_List?: boolean | Personal_Channels$Personal_Channels_ListArgs<ExtArgs>
+    Personal_Channels_Chat?: boolean | Personal_Channels$Personal_Channels_ChatArgs<ExtArgs>
     _count?: boolean | Personal_ChannelsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3640,6 +3771,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
       Personal_Channels_Users: Prisma.$Personal_Channels_UsersPayload<ExtArgs>[]
       Personal_Channels_List: Prisma.$Personal_Channels_ListPayload<ExtArgs>[]
+      Personal_Channels_Chat: Prisma.$Personal_Channels_ChatPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3990,6 +4122,7 @@ export namespace Prisma {
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Personal_Channels_Users<T extends Personal_Channels$Personal_Channels_UsersArgs<ExtArgs> = {}>(args?: Subset<T, Personal_Channels$Personal_Channels_UsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Personal_Channels_UsersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Personal_Channels_List<T extends Personal_Channels$Personal_Channels_ListArgs<ExtArgs> = {}>(args?: Subset<T, Personal_Channels$Personal_Channels_ListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Personal_Channels_ListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Personal_Channels_Chat<T extends Personal_Channels$Personal_Channels_ChatArgs<ExtArgs> = {}>(args?: Subset<T, Personal_Channels$Personal_Channels_ChatArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4412,6 +4545,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Personal_Channels_ListScalarFieldEnum | Personal_Channels_ListScalarFieldEnum[]
+  }
+
+  /**
+   * Personal_Channels.Personal_Channels_Chat
+   */
+  export type Personal_Channels$Personal_Channels_ChatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    where?: Personal_Channels_ChatWhereInput
+    orderBy?: Personal_Channels_ChatOrderByWithRelationInput | Personal_Channels_ChatOrderByWithRelationInput[]
+    cursor?: Personal_Channels_ChatWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Personal_Channels_ChatScalarFieldEnum | Personal_Channels_ChatScalarFieldEnum[]
   }
 
   /**
@@ -6384,6 +6541,1003 @@ export namespace Prisma {
 
 
   /**
+   * Model Personal_Channels_Chat
+   */
+
+  export type AggregatePersonal_Channels_Chat = {
+    _count: Personal_Channels_ChatCountAggregateOutputType | null
+    _avg: Personal_Channels_ChatAvgAggregateOutputType | null
+    _sum: Personal_Channels_ChatSumAggregateOutputType | null
+    _min: Personal_Channels_ChatMinAggregateOutputType | null
+    _max: Personal_Channels_ChatMaxAggregateOutputType | null
+  }
+
+  export type Personal_Channels_ChatAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    channelId: number | null
+  }
+
+  export type Personal_Channels_ChatSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    channelId: number | null
+  }
+
+  export type Personal_Channels_ChatMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: number | null
+    channelId: number | null
+    content: string | null
+    enabled: boolean | null
+  }
+
+  export type Personal_Channels_ChatMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: number | null
+    channelId: number | null
+    content: string | null
+    enabled: boolean | null
+  }
+
+  export type Personal_Channels_ChatCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    channelId: number
+    content: number
+    enabled: number
+    _all: number
+  }
+
+
+  export type Personal_Channels_ChatAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    channelId?: true
+  }
+
+  export type Personal_Channels_ChatSumAggregateInputType = {
+    id?: true
+    userId?: true
+    channelId?: true
+  }
+
+  export type Personal_Channels_ChatMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    channelId?: true
+    content?: true
+    enabled?: true
+  }
+
+  export type Personal_Channels_ChatMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    channelId?: true
+    content?: true
+    enabled?: true
+  }
+
+  export type Personal_Channels_ChatCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    channelId?: true
+    content?: true
+    enabled?: true
+    _all?: true
+  }
+
+  export type Personal_Channels_ChatAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Personal_Channels_Chat to aggregate.
+     */
+    where?: Personal_Channels_ChatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Personal_Channels_Chats to fetch.
+     */
+    orderBy?: Personal_Channels_ChatOrderByWithRelationInput | Personal_Channels_ChatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: Personal_Channels_ChatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Personal_Channels_Chats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Personal_Channels_Chats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Personal_Channels_Chats
+    **/
+    _count?: true | Personal_Channels_ChatCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Personal_Channels_ChatAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Personal_Channels_ChatSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Personal_Channels_ChatMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Personal_Channels_ChatMaxAggregateInputType
+  }
+
+  export type GetPersonal_Channels_ChatAggregateType<T extends Personal_Channels_ChatAggregateArgs> = {
+        [P in keyof T & keyof AggregatePersonal_Channels_Chat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePersonal_Channels_Chat[P]>
+      : GetScalarType<T[P], AggregatePersonal_Channels_Chat[P]>
+  }
+
+
+
+
+  export type Personal_Channels_ChatGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Personal_Channels_ChatWhereInput
+    orderBy?: Personal_Channels_ChatOrderByWithAggregationInput | Personal_Channels_ChatOrderByWithAggregationInput[]
+    by: Personal_Channels_ChatScalarFieldEnum[] | Personal_Channels_ChatScalarFieldEnum
+    having?: Personal_Channels_ChatScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Personal_Channels_ChatCountAggregateInputType | true
+    _avg?: Personal_Channels_ChatAvgAggregateInputType
+    _sum?: Personal_Channels_ChatSumAggregateInputType
+    _min?: Personal_Channels_ChatMinAggregateInputType
+    _max?: Personal_Channels_ChatMaxAggregateInputType
+  }
+
+  export type Personal_Channels_ChatGroupByOutputType = {
+    id: number
+    createdAt: Date
+    updatedAt: Date
+    userId: number
+    channelId: number
+    content: string
+    enabled: boolean
+    _count: Personal_Channels_ChatCountAggregateOutputType | null
+    _avg: Personal_Channels_ChatAvgAggregateOutputType | null
+    _sum: Personal_Channels_ChatSumAggregateOutputType | null
+    _min: Personal_Channels_ChatMinAggregateOutputType | null
+    _max: Personal_Channels_ChatMaxAggregateOutputType | null
+  }
+
+  type GetPersonal_Channels_ChatGroupByPayload<T extends Personal_Channels_ChatGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Personal_Channels_ChatGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Personal_Channels_ChatGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Personal_Channels_ChatGroupByOutputType[P]>
+            : GetScalarType<T[P], Personal_Channels_ChatGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type Personal_Channels_ChatSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    channelId?: boolean
+    content?: boolean
+    enabled?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    channel?: boolean | Personal_ChannelsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["personal_Channels_Chat"]>
+
+
+
+  export type Personal_Channels_ChatSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    channelId?: boolean
+    content?: boolean
+    enabled?: boolean
+  }
+
+  export type Personal_Channels_ChatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "channelId" | "content" | "enabled", ExtArgs["result"]["personal_Channels_Chat"]>
+  export type Personal_Channels_ChatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    channel?: boolean | Personal_ChannelsDefaultArgs<ExtArgs>
+  }
+
+  export type $Personal_Channels_ChatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Personal_Channels_Chat"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      channel: Prisma.$Personal_ChannelsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      updatedAt: Date
+      userId: number
+      channelId: number
+      content: string
+      enabled: boolean
+    }, ExtArgs["result"]["personal_Channels_Chat"]>
+    composites: {}
+  }
+
+  type Personal_Channels_ChatGetPayload<S extends boolean | null | undefined | Personal_Channels_ChatDefaultArgs> = $Result.GetResult<Prisma.$Personal_Channels_ChatPayload, S>
+
+  type Personal_Channels_ChatCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<Personal_Channels_ChatFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Personal_Channels_ChatCountAggregateInputType | true
+    }
+
+  export interface Personal_Channels_ChatDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Personal_Channels_Chat'], meta: { name: 'Personal_Channels_Chat' } }
+    /**
+     * Find zero or one Personal_Channels_Chat that matches the filter.
+     * @param {Personal_Channels_ChatFindUniqueArgs} args - Arguments to find a Personal_Channels_Chat
+     * @example
+     * // Get one Personal_Channels_Chat
+     * const personal_Channels_Chat = await prisma.personal_Channels_Chat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends Personal_Channels_ChatFindUniqueArgs>(args: SelectSubset<T, Personal_Channels_ChatFindUniqueArgs<ExtArgs>>): Prisma__Personal_Channels_ChatClient<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Personal_Channels_Chat that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {Personal_Channels_ChatFindUniqueOrThrowArgs} args - Arguments to find a Personal_Channels_Chat
+     * @example
+     * // Get one Personal_Channels_Chat
+     * const personal_Channels_Chat = await prisma.personal_Channels_Chat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends Personal_Channels_ChatFindUniqueOrThrowArgs>(args: SelectSubset<T, Personal_Channels_ChatFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Personal_Channels_ChatClient<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Personal_Channels_Chat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Personal_Channels_ChatFindFirstArgs} args - Arguments to find a Personal_Channels_Chat
+     * @example
+     * // Get one Personal_Channels_Chat
+     * const personal_Channels_Chat = await prisma.personal_Channels_Chat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends Personal_Channels_ChatFindFirstArgs>(args?: SelectSubset<T, Personal_Channels_ChatFindFirstArgs<ExtArgs>>): Prisma__Personal_Channels_ChatClient<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Personal_Channels_Chat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Personal_Channels_ChatFindFirstOrThrowArgs} args - Arguments to find a Personal_Channels_Chat
+     * @example
+     * // Get one Personal_Channels_Chat
+     * const personal_Channels_Chat = await prisma.personal_Channels_Chat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends Personal_Channels_ChatFindFirstOrThrowArgs>(args?: SelectSubset<T, Personal_Channels_ChatFindFirstOrThrowArgs<ExtArgs>>): Prisma__Personal_Channels_ChatClient<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Personal_Channels_Chats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Personal_Channels_ChatFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Personal_Channels_Chats
+     * const personal_Channels_Chats = await prisma.personal_Channels_Chat.findMany()
+     * 
+     * // Get first 10 Personal_Channels_Chats
+     * const personal_Channels_Chats = await prisma.personal_Channels_Chat.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const personal_Channels_ChatWithIdOnly = await prisma.personal_Channels_Chat.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends Personal_Channels_ChatFindManyArgs>(args?: SelectSubset<T, Personal_Channels_ChatFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Personal_Channels_Chat.
+     * @param {Personal_Channels_ChatCreateArgs} args - Arguments to create a Personal_Channels_Chat.
+     * @example
+     * // Create one Personal_Channels_Chat
+     * const Personal_Channels_Chat = await prisma.personal_Channels_Chat.create({
+     *   data: {
+     *     // ... data to create a Personal_Channels_Chat
+     *   }
+     * })
+     * 
+     */
+    create<T extends Personal_Channels_ChatCreateArgs>(args: SelectSubset<T, Personal_Channels_ChatCreateArgs<ExtArgs>>): Prisma__Personal_Channels_ChatClient<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Personal_Channels_Chats.
+     * @param {Personal_Channels_ChatCreateManyArgs} args - Arguments to create many Personal_Channels_Chats.
+     * @example
+     * // Create many Personal_Channels_Chats
+     * const personal_Channels_Chat = await prisma.personal_Channels_Chat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends Personal_Channels_ChatCreateManyArgs>(args?: SelectSubset<T, Personal_Channels_ChatCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Personal_Channels_Chat.
+     * @param {Personal_Channels_ChatDeleteArgs} args - Arguments to delete one Personal_Channels_Chat.
+     * @example
+     * // Delete one Personal_Channels_Chat
+     * const Personal_Channels_Chat = await prisma.personal_Channels_Chat.delete({
+     *   where: {
+     *     // ... filter to delete one Personal_Channels_Chat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends Personal_Channels_ChatDeleteArgs>(args: SelectSubset<T, Personal_Channels_ChatDeleteArgs<ExtArgs>>): Prisma__Personal_Channels_ChatClient<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Personal_Channels_Chat.
+     * @param {Personal_Channels_ChatUpdateArgs} args - Arguments to update one Personal_Channels_Chat.
+     * @example
+     * // Update one Personal_Channels_Chat
+     * const personal_Channels_Chat = await prisma.personal_Channels_Chat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends Personal_Channels_ChatUpdateArgs>(args: SelectSubset<T, Personal_Channels_ChatUpdateArgs<ExtArgs>>): Prisma__Personal_Channels_ChatClient<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Personal_Channels_Chats.
+     * @param {Personal_Channels_ChatDeleteManyArgs} args - Arguments to filter Personal_Channels_Chats to delete.
+     * @example
+     * // Delete a few Personal_Channels_Chats
+     * const { count } = await prisma.personal_Channels_Chat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends Personal_Channels_ChatDeleteManyArgs>(args?: SelectSubset<T, Personal_Channels_ChatDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Personal_Channels_Chats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Personal_Channels_ChatUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Personal_Channels_Chats
+     * const personal_Channels_Chat = await prisma.personal_Channels_Chat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends Personal_Channels_ChatUpdateManyArgs>(args: SelectSubset<T, Personal_Channels_ChatUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Personal_Channels_Chat.
+     * @param {Personal_Channels_ChatUpsertArgs} args - Arguments to update or create a Personal_Channels_Chat.
+     * @example
+     * // Update or create a Personal_Channels_Chat
+     * const personal_Channels_Chat = await prisma.personal_Channels_Chat.upsert({
+     *   create: {
+     *     // ... data to create a Personal_Channels_Chat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Personal_Channels_Chat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends Personal_Channels_ChatUpsertArgs>(args: SelectSubset<T, Personal_Channels_ChatUpsertArgs<ExtArgs>>): Prisma__Personal_Channels_ChatClient<$Result.GetResult<Prisma.$Personal_Channels_ChatPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Personal_Channels_Chats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Personal_Channels_ChatCountArgs} args - Arguments to filter Personal_Channels_Chats to count.
+     * @example
+     * // Count the number of Personal_Channels_Chats
+     * const count = await prisma.personal_Channels_Chat.count({
+     *   where: {
+     *     // ... the filter for the Personal_Channels_Chats we want to count
+     *   }
+     * })
+    **/
+    count<T extends Personal_Channels_ChatCountArgs>(
+      args?: Subset<T, Personal_Channels_ChatCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Personal_Channels_ChatCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Personal_Channels_Chat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Personal_Channels_ChatAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Personal_Channels_ChatAggregateArgs>(args: Subset<T, Personal_Channels_ChatAggregateArgs>): Prisma.PrismaPromise<GetPersonal_Channels_ChatAggregateType<T>>
+
+    /**
+     * Group by Personal_Channels_Chat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Personal_Channels_ChatGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends Personal_Channels_ChatGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: Personal_Channels_ChatGroupByArgs['orderBy'] }
+        : { orderBy?: Personal_Channels_ChatGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, Personal_Channels_ChatGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPersonal_Channels_ChatGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Personal_Channels_Chat model
+   */
+  readonly fields: Personal_Channels_ChatFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Personal_Channels_Chat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__Personal_Channels_ChatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    channel<T extends Personal_ChannelsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, Personal_ChannelsDefaultArgs<ExtArgs>>): Prisma__Personal_ChannelsClient<$Result.GetResult<Prisma.$Personal_ChannelsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Personal_Channels_Chat model
+   */
+  interface Personal_Channels_ChatFieldRefs {
+    readonly id: FieldRef<"Personal_Channels_Chat", 'Int'>
+    readonly createdAt: FieldRef<"Personal_Channels_Chat", 'DateTime'>
+    readonly updatedAt: FieldRef<"Personal_Channels_Chat", 'DateTime'>
+    readonly userId: FieldRef<"Personal_Channels_Chat", 'Int'>
+    readonly channelId: FieldRef<"Personal_Channels_Chat", 'Int'>
+    readonly content: FieldRef<"Personal_Channels_Chat", 'String'>
+    readonly enabled: FieldRef<"Personal_Channels_Chat", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Personal_Channels_Chat findUnique
+   */
+  export type Personal_Channels_ChatFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which Personal_Channels_Chat to fetch.
+     */
+    where: Personal_Channels_ChatWhereUniqueInput
+  }
+
+  /**
+   * Personal_Channels_Chat findUniqueOrThrow
+   */
+  export type Personal_Channels_ChatFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which Personal_Channels_Chat to fetch.
+     */
+    where: Personal_Channels_ChatWhereUniqueInput
+  }
+
+  /**
+   * Personal_Channels_Chat findFirst
+   */
+  export type Personal_Channels_ChatFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which Personal_Channels_Chat to fetch.
+     */
+    where?: Personal_Channels_ChatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Personal_Channels_Chats to fetch.
+     */
+    orderBy?: Personal_Channels_ChatOrderByWithRelationInput | Personal_Channels_ChatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Personal_Channels_Chats.
+     */
+    cursor?: Personal_Channels_ChatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Personal_Channels_Chats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Personal_Channels_Chats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Personal_Channels_Chats.
+     */
+    distinct?: Personal_Channels_ChatScalarFieldEnum | Personal_Channels_ChatScalarFieldEnum[]
+  }
+
+  /**
+   * Personal_Channels_Chat findFirstOrThrow
+   */
+  export type Personal_Channels_ChatFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which Personal_Channels_Chat to fetch.
+     */
+    where?: Personal_Channels_ChatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Personal_Channels_Chats to fetch.
+     */
+    orderBy?: Personal_Channels_ChatOrderByWithRelationInput | Personal_Channels_ChatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Personal_Channels_Chats.
+     */
+    cursor?: Personal_Channels_ChatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Personal_Channels_Chats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Personal_Channels_Chats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Personal_Channels_Chats.
+     */
+    distinct?: Personal_Channels_ChatScalarFieldEnum | Personal_Channels_ChatScalarFieldEnum[]
+  }
+
+  /**
+   * Personal_Channels_Chat findMany
+   */
+  export type Personal_Channels_ChatFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which Personal_Channels_Chats to fetch.
+     */
+    where?: Personal_Channels_ChatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Personal_Channels_Chats to fetch.
+     */
+    orderBy?: Personal_Channels_ChatOrderByWithRelationInput | Personal_Channels_ChatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Personal_Channels_Chats.
+     */
+    cursor?: Personal_Channels_ChatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Personal_Channels_Chats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Personal_Channels_Chats.
+     */
+    skip?: number
+    distinct?: Personal_Channels_ChatScalarFieldEnum | Personal_Channels_ChatScalarFieldEnum[]
+  }
+
+  /**
+   * Personal_Channels_Chat create
+   */
+  export type Personal_Channels_ChatCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Personal_Channels_Chat.
+     */
+    data: XOR<Personal_Channels_ChatCreateInput, Personal_Channels_ChatUncheckedCreateInput>
+  }
+
+  /**
+   * Personal_Channels_Chat createMany
+   */
+  export type Personal_Channels_ChatCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Personal_Channels_Chats.
+     */
+    data: Personal_Channels_ChatCreateManyInput | Personal_Channels_ChatCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Personal_Channels_Chat update
+   */
+  export type Personal_Channels_ChatUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Personal_Channels_Chat.
+     */
+    data: XOR<Personal_Channels_ChatUpdateInput, Personal_Channels_ChatUncheckedUpdateInput>
+    /**
+     * Choose, which Personal_Channels_Chat to update.
+     */
+    where: Personal_Channels_ChatWhereUniqueInput
+  }
+
+  /**
+   * Personal_Channels_Chat updateMany
+   */
+  export type Personal_Channels_ChatUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Personal_Channels_Chats.
+     */
+    data: XOR<Personal_Channels_ChatUpdateManyMutationInput, Personal_Channels_ChatUncheckedUpdateManyInput>
+    /**
+     * Filter which Personal_Channels_Chats to update
+     */
+    where?: Personal_Channels_ChatWhereInput
+    /**
+     * Limit how many Personal_Channels_Chats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Personal_Channels_Chat upsert
+   */
+  export type Personal_Channels_ChatUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Personal_Channels_Chat to update in case it exists.
+     */
+    where: Personal_Channels_ChatWhereUniqueInput
+    /**
+     * In case the Personal_Channels_Chat found by the `where` argument doesn't exist, create a new Personal_Channels_Chat with this data.
+     */
+    create: XOR<Personal_Channels_ChatCreateInput, Personal_Channels_ChatUncheckedCreateInput>
+    /**
+     * In case the Personal_Channels_Chat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<Personal_Channels_ChatUpdateInput, Personal_Channels_ChatUncheckedUpdateInput>
+  }
+
+  /**
+   * Personal_Channels_Chat delete
+   */
+  export type Personal_Channels_ChatDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+    /**
+     * Filter which Personal_Channels_Chat to delete.
+     */
+    where: Personal_Channels_ChatWhereUniqueInput
+  }
+
+  /**
+   * Personal_Channels_Chat deleteMany
+   */
+  export type Personal_Channels_ChatDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Personal_Channels_Chats to delete
+     */
+    where?: Personal_Channels_ChatWhereInput
+    /**
+     * Limit how many Personal_Channels_Chats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Personal_Channels_Chat without action
+   */
+  export type Personal_Channels_ChatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Personal_Channels_Chat
+     */
+    select?: Personal_Channels_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Personal_Channels_Chat
+     */
+    omit?: Personal_Channels_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Personal_Channels_ChatInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6455,6 +7609,19 @@ export namespace Prisma {
   export type Personal_Channels_ListScalarFieldEnum = (typeof Personal_Channels_ListScalarFieldEnum)[keyof typeof Personal_Channels_ListScalarFieldEnum]
 
 
+  export const Personal_Channels_ChatScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId',
+    channelId: 'channelId',
+    content: 'content',
+    enabled: 'enabled'
+  };
+
+  export type Personal_Channels_ChatScalarFieldEnum = (typeof Personal_Channels_ChatScalarFieldEnum)[keyof typeof Personal_Channels_ChatScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -6471,6 +7638,13 @@ export namespace Prisma {
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+  export const Personal_Channels_ChatOrderByRelevanceFieldEnum: {
+    content: 'content'
+  };
+
+  export type Personal_Channels_ChatOrderByRelevanceFieldEnum = (typeof Personal_Channels_ChatOrderByRelevanceFieldEnum)[keyof typeof Personal_Channels_ChatOrderByRelevanceFieldEnum]
 
 
   /**
@@ -6533,6 +7707,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsListRelationFilter
     Personal_Channels_Users?: Personal_Channels_UsersListRelationFilter
     Personal_Channels_List?: Personal_Channels_ListListRelationFilter
+    Personal_Channels_Chat?: Personal_Channels_ChatListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6549,6 +7724,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsOrderByRelationAggregateInput
     Personal_Channels_Users?: Personal_Channels_UsersOrderByRelationAggregateInput
     Personal_Channels_List?: Personal_Channels_ListOrderByRelationAggregateInput
+    Personal_Channels_Chat?: Personal_Channels_ChatOrderByRelationAggregateInput
     _relevance?: UserOrderByRelevanceInput
   }
 
@@ -6569,6 +7745,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsListRelationFilter
     Personal_Channels_Users?: Personal_Channels_UsersListRelationFilter
     Personal_Channels_List?: Personal_Channels_ListListRelationFilter
+    Personal_Channels_Chat?: Personal_Channels_ChatListRelationFilter
   }, "id" | "email" | "userid">
 
   export type UserOrderByWithAggregationInput = {
@@ -6673,6 +7850,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Personal_Channels_Users?: Personal_Channels_UsersListRelationFilter
     Personal_Channels_List?: Personal_Channels_ListListRelationFilter
+    Personal_Channels_Chat?: Personal_Channels_ChatListRelationFilter
   }
 
   export type Personal_ChannelsOrderByWithRelationInput = {
@@ -6684,6 +7862,7 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
     Personal_Channels_Users?: Personal_Channels_UsersOrderByRelationAggregateInput
     Personal_Channels_List?: Personal_Channels_ListOrderByRelationAggregateInput
+    Personal_Channels_Chat?: Personal_Channels_ChatOrderByRelationAggregateInput
   }
 
   export type Personal_ChannelsWhereUniqueInput = Prisma.AtLeast<{
@@ -6698,6 +7877,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Personal_Channels_Users?: Personal_Channels_UsersListRelationFilter
     Personal_Channels_List?: Personal_Channels_ListListRelationFilter
+    Personal_Channels_Chat?: Personal_Channels_ChatListRelationFilter
   }, "id">
 
   export type Personal_ChannelsOrderByWithAggregationInput = {
@@ -6844,6 +8024,77 @@ export namespace Prisma {
     enabled?: BoolWithAggregatesFilter<"Personal_Channels_List"> | boolean
   }
 
+  export type Personal_Channels_ChatWhereInput = {
+    AND?: Personal_Channels_ChatWhereInput | Personal_Channels_ChatWhereInput[]
+    OR?: Personal_Channels_ChatWhereInput[]
+    NOT?: Personal_Channels_ChatWhereInput | Personal_Channels_ChatWhereInput[]
+    id?: IntFilter<"Personal_Channels_Chat"> | number
+    createdAt?: DateTimeFilter<"Personal_Channels_Chat"> | Date | string
+    updatedAt?: DateTimeFilter<"Personal_Channels_Chat"> | Date | string
+    userId?: IntFilter<"Personal_Channels_Chat"> | number
+    channelId?: IntFilter<"Personal_Channels_Chat"> | number
+    content?: StringFilter<"Personal_Channels_Chat"> | string
+    enabled?: BoolFilter<"Personal_Channels_Chat"> | boolean
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    channel?: XOR<Personal_ChannelsScalarRelationFilter, Personal_ChannelsWhereInput>
+  }
+
+  export type Personal_Channels_ChatOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+    content?: SortOrder
+    enabled?: SortOrder
+    user?: UserOrderByWithRelationInput
+    channel?: Personal_ChannelsOrderByWithRelationInput
+    _relevance?: Personal_Channels_ChatOrderByRelevanceInput
+  }
+
+  export type Personal_Channels_ChatWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: Personal_Channels_ChatWhereInput | Personal_Channels_ChatWhereInput[]
+    OR?: Personal_Channels_ChatWhereInput[]
+    NOT?: Personal_Channels_ChatWhereInput | Personal_Channels_ChatWhereInput[]
+    createdAt?: DateTimeFilter<"Personal_Channels_Chat"> | Date | string
+    updatedAt?: DateTimeFilter<"Personal_Channels_Chat"> | Date | string
+    userId?: IntFilter<"Personal_Channels_Chat"> | number
+    channelId?: IntFilter<"Personal_Channels_Chat"> | number
+    content?: StringFilter<"Personal_Channels_Chat"> | string
+    enabled?: BoolFilter<"Personal_Channels_Chat"> | boolean
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    channel?: XOR<Personal_ChannelsScalarRelationFilter, Personal_ChannelsWhereInput>
+  }, "id">
+
+  export type Personal_Channels_ChatOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+    content?: SortOrder
+    enabled?: SortOrder
+    _count?: Personal_Channels_ChatCountOrderByAggregateInput
+    _avg?: Personal_Channels_ChatAvgOrderByAggregateInput
+    _max?: Personal_Channels_ChatMaxOrderByAggregateInput
+    _min?: Personal_Channels_ChatMinOrderByAggregateInput
+    _sum?: Personal_Channels_ChatSumOrderByAggregateInput
+  }
+
+  export type Personal_Channels_ChatScalarWhereWithAggregatesInput = {
+    AND?: Personal_Channels_ChatScalarWhereWithAggregatesInput | Personal_Channels_ChatScalarWhereWithAggregatesInput[]
+    OR?: Personal_Channels_ChatScalarWhereWithAggregatesInput[]
+    NOT?: Personal_Channels_ChatScalarWhereWithAggregatesInput | Personal_Channels_ChatScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Personal_Channels_Chat"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Personal_Channels_Chat"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Personal_Channels_Chat"> | Date | string
+    userId?: IntWithAggregatesFilter<"Personal_Channels_Chat"> | number
+    channelId?: IntWithAggregatesFilter<"Personal_Channels_Chat"> | number
+    content?: StringWithAggregatesFilter<"Personal_Channels_Chat"> | string
+    enabled?: BoolWithAggregatesFilter<"Personal_Channels_Chat"> | boolean
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -6857,6 +8108,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -6873,6 +8125,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -6888,6 +8141,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6904,6 +8158,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6996,6 +8251,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutPersonalChannelsInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutChannelInput
     Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutChannelInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutChannelInput
   }
 
   export type Personal_ChannelsUncheckedCreateInput = {
@@ -7006,6 +8262,7 @@ export namespace Prisma {
     enabled?: boolean
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutChannelInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutChannelInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type Personal_ChannelsUpdateInput = {
@@ -7015,6 +8272,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutPersonalChannelsNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutChannelNestedInput
     Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutChannelNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutChannelNestedInput
   }
 
   export type Personal_ChannelsUncheckedUpdateInput = {
@@ -7025,6 +8283,7 @@ export namespace Prisma {
     enabled?: BoolFieldUpdateOperationsInput | boolean
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutChannelNestedInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutChannelNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type Personal_ChannelsCreateManyInput = {
@@ -7151,6 +8410,71 @@ export namespace Prisma {
     enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type Personal_Channels_ChatCreateInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    content: string
+    enabled?: boolean
+    user: UserCreateNestedOneWithoutPersonal_Channels_ChatInput
+    channel: Personal_ChannelsCreateNestedOneWithoutPersonal_Channels_ChatInput
+  }
+
+  export type Personal_Channels_ChatUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    channelId: number
+    content: string
+    enabled?: boolean
+  }
+
+  export type Personal_Channels_ChatUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutPersonal_Channels_ChatNestedInput
+    channel?: Personal_ChannelsUpdateOneRequiredWithoutPersonal_Channels_ChatNestedInput
+  }
+
+  export type Personal_Channels_ChatUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    channelId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type Personal_Channels_ChatCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    channelId: number
+    content: string
+    enabled?: boolean
+  }
+
+  export type Personal_Channels_ChatUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type Personal_Channels_ChatUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    channelId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -7217,6 +8541,12 @@ export namespace Prisma {
     none?: Personal_Channels_ListWhereInput
   }
 
+  export type Personal_Channels_ChatListRelationFilter = {
+    every?: Personal_Channels_ChatWhereInput
+    some?: Personal_Channels_ChatWhereInput
+    none?: Personal_Channels_ChatWhereInput
+  }
+
   export type FriendOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -7230,6 +8560,10 @@ export namespace Prisma {
   }
 
   export type Personal_Channels_ListOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type Personal_Channels_ChatOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -7488,6 +8822,54 @@ export namespace Prisma {
     channelId?: SortOrder
   }
 
+  export type Personal_Channels_ChatOrderByRelevanceInput = {
+    fields: Personal_Channels_ChatOrderByRelevanceFieldEnum | Personal_Channels_ChatOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type Personal_Channels_ChatCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+    content?: SortOrder
+    enabled?: SortOrder
+  }
+
+  export type Personal_Channels_ChatAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+  }
+
+  export type Personal_Channels_ChatMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+    content?: SortOrder
+    enabled?: SortOrder
+  }
+
+  export type Personal_Channels_ChatMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+    content?: SortOrder
+    enabled?: SortOrder
+  }
+
+  export type Personal_Channels_ChatSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+  }
+
   export type FriendCreateNestedManyWithoutUserInput = {
     create?: XOR<FriendCreateWithoutUserInput, FriendUncheckedCreateWithoutUserInput> | FriendCreateWithoutUserInput[] | FriendUncheckedCreateWithoutUserInput[]
     connectOrCreate?: FriendCreateOrConnectWithoutUserInput | FriendCreateOrConnectWithoutUserInput[]
@@ -7523,6 +8905,13 @@ export namespace Prisma {
     connect?: Personal_Channels_ListWhereUniqueInput | Personal_Channels_ListWhereUniqueInput[]
   }
 
+  export type Personal_Channels_ChatCreateNestedManyWithoutUserInput = {
+    create?: XOR<Personal_Channels_ChatCreateWithoutUserInput, Personal_Channels_ChatUncheckedCreateWithoutUserInput> | Personal_Channels_ChatCreateWithoutUserInput[] | Personal_Channels_ChatUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: Personal_Channels_ChatCreateOrConnectWithoutUserInput | Personal_Channels_ChatCreateOrConnectWithoutUserInput[]
+    createMany?: Personal_Channels_ChatCreateManyUserInputEnvelope
+    connect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+  }
+
   export type FriendUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<FriendCreateWithoutUserInput, FriendUncheckedCreateWithoutUserInput> | FriendCreateWithoutUserInput[] | FriendUncheckedCreateWithoutUserInput[]
     connectOrCreate?: FriendCreateOrConnectWithoutUserInput | FriendCreateOrConnectWithoutUserInput[]
@@ -7556,6 +8945,13 @@ export namespace Prisma {
     connectOrCreate?: Personal_Channels_ListCreateOrConnectWithoutUserInput | Personal_Channels_ListCreateOrConnectWithoutUserInput[]
     createMany?: Personal_Channels_ListCreateManyUserInputEnvelope
     connect?: Personal_Channels_ListWhereUniqueInput | Personal_Channels_ListWhereUniqueInput[]
+  }
+
+  export type Personal_Channels_ChatUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<Personal_Channels_ChatCreateWithoutUserInput, Personal_Channels_ChatUncheckedCreateWithoutUserInput> | Personal_Channels_ChatCreateWithoutUserInput[] | Personal_Channels_ChatUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: Personal_Channels_ChatCreateOrConnectWithoutUserInput | Personal_Channels_ChatCreateOrConnectWithoutUserInput[]
+    createMany?: Personal_Channels_ChatCreateManyUserInputEnvelope
+    connect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -7640,6 +9036,20 @@ export namespace Prisma {
     deleteMany?: Personal_Channels_ListScalarWhereInput | Personal_Channels_ListScalarWhereInput[]
   }
 
+  export type Personal_Channels_ChatUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Personal_Channels_ChatCreateWithoutUserInput, Personal_Channels_ChatUncheckedCreateWithoutUserInput> | Personal_Channels_ChatCreateWithoutUserInput[] | Personal_Channels_ChatUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: Personal_Channels_ChatCreateOrConnectWithoutUserInput | Personal_Channels_ChatCreateOrConnectWithoutUserInput[]
+    upsert?: Personal_Channels_ChatUpsertWithWhereUniqueWithoutUserInput | Personal_Channels_ChatUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: Personal_Channels_ChatCreateManyUserInputEnvelope
+    set?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    disconnect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    delete?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    connect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    update?: Personal_Channels_ChatUpdateWithWhereUniqueWithoutUserInput | Personal_Channels_ChatUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: Personal_Channels_ChatUpdateManyWithWhereWithoutUserInput | Personal_Channels_ChatUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: Personal_Channels_ChatScalarWhereInput | Personal_Channels_ChatScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -7718,6 +9128,20 @@ export namespace Prisma {
     deleteMany?: Personal_Channels_ListScalarWhereInput | Personal_Channels_ListScalarWhereInput[]
   }
 
+  export type Personal_Channels_ChatUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Personal_Channels_ChatCreateWithoutUserInput, Personal_Channels_ChatUncheckedCreateWithoutUserInput> | Personal_Channels_ChatCreateWithoutUserInput[] | Personal_Channels_ChatUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: Personal_Channels_ChatCreateOrConnectWithoutUserInput | Personal_Channels_ChatCreateOrConnectWithoutUserInput[]
+    upsert?: Personal_Channels_ChatUpsertWithWhereUniqueWithoutUserInput | Personal_Channels_ChatUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: Personal_Channels_ChatCreateManyUserInputEnvelope
+    set?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    disconnect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    delete?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    connect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    update?: Personal_Channels_ChatUpdateWithWhereUniqueWithoutUserInput | Personal_Channels_ChatUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: Personal_Channels_ChatUpdateManyWithWhereWithoutUserInput | Personal_Channels_ChatUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: Personal_Channels_ChatScalarWhereInput | Personal_Channels_ChatScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutFriendsInput = {
     create?: XOR<UserCreateWithoutFriendsInput, UserUncheckedCreateWithoutFriendsInput>
     connectOrCreate?: UserCreateOrConnectWithoutFriendsInput
@@ -7766,6 +9190,13 @@ export namespace Prisma {
     connect?: Personal_Channels_ListWhereUniqueInput | Personal_Channels_ListWhereUniqueInput[]
   }
 
+  export type Personal_Channels_ChatCreateNestedManyWithoutChannelInput = {
+    create?: XOR<Personal_Channels_ChatCreateWithoutChannelInput, Personal_Channels_ChatUncheckedCreateWithoutChannelInput> | Personal_Channels_ChatCreateWithoutChannelInput[] | Personal_Channels_ChatUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: Personal_Channels_ChatCreateOrConnectWithoutChannelInput | Personal_Channels_ChatCreateOrConnectWithoutChannelInput[]
+    createMany?: Personal_Channels_ChatCreateManyChannelInputEnvelope
+    connect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+  }
+
   export type Personal_Channels_UsersUncheckedCreateNestedManyWithoutChannelInput = {
     create?: XOR<Personal_Channels_UsersCreateWithoutChannelInput, Personal_Channels_UsersUncheckedCreateWithoutChannelInput> | Personal_Channels_UsersCreateWithoutChannelInput[] | Personal_Channels_UsersUncheckedCreateWithoutChannelInput[]
     connectOrCreate?: Personal_Channels_UsersCreateOrConnectWithoutChannelInput | Personal_Channels_UsersCreateOrConnectWithoutChannelInput[]
@@ -7778,6 +9209,13 @@ export namespace Prisma {
     connectOrCreate?: Personal_Channels_ListCreateOrConnectWithoutChannelInput | Personal_Channels_ListCreateOrConnectWithoutChannelInput[]
     createMany?: Personal_Channels_ListCreateManyChannelInputEnvelope
     connect?: Personal_Channels_ListWhereUniqueInput | Personal_Channels_ListWhereUniqueInput[]
+  }
+
+  export type Personal_Channels_ChatUncheckedCreateNestedManyWithoutChannelInput = {
+    create?: XOR<Personal_Channels_ChatCreateWithoutChannelInput, Personal_Channels_ChatUncheckedCreateWithoutChannelInput> | Personal_Channels_ChatCreateWithoutChannelInput[] | Personal_Channels_ChatUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: Personal_Channels_ChatCreateOrConnectWithoutChannelInput | Personal_Channels_ChatCreateOrConnectWithoutChannelInput[]
+    createMany?: Personal_Channels_ChatCreateManyChannelInputEnvelope
+    connect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutPersonalChannelsNestedInput = {
@@ -7816,6 +9254,20 @@ export namespace Prisma {
     deleteMany?: Personal_Channels_ListScalarWhereInput | Personal_Channels_ListScalarWhereInput[]
   }
 
+  export type Personal_Channels_ChatUpdateManyWithoutChannelNestedInput = {
+    create?: XOR<Personal_Channels_ChatCreateWithoutChannelInput, Personal_Channels_ChatUncheckedCreateWithoutChannelInput> | Personal_Channels_ChatCreateWithoutChannelInput[] | Personal_Channels_ChatUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: Personal_Channels_ChatCreateOrConnectWithoutChannelInput | Personal_Channels_ChatCreateOrConnectWithoutChannelInput[]
+    upsert?: Personal_Channels_ChatUpsertWithWhereUniqueWithoutChannelInput | Personal_Channels_ChatUpsertWithWhereUniqueWithoutChannelInput[]
+    createMany?: Personal_Channels_ChatCreateManyChannelInputEnvelope
+    set?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    disconnect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    delete?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    connect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    update?: Personal_Channels_ChatUpdateWithWhereUniqueWithoutChannelInput | Personal_Channels_ChatUpdateWithWhereUniqueWithoutChannelInput[]
+    updateMany?: Personal_Channels_ChatUpdateManyWithWhereWithoutChannelInput | Personal_Channels_ChatUpdateManyWithWhereWithoutChannelInput[]
+    deleteMany?: Personal_Channels_ChatScalarWhereInput | Personal_Channels_ChatScalarWhereInput[]
+  }
+
   export type Personal_Channels_UsersUncheckedUpdateManyWithoutChannelNestedInput = {
     create?: XOR<Personal_Channels_UsersCreateWithoutChannelInput, Personal_Channels_UsersUncheckedCreateWithoutChannelInput> | Personal_Channels_UsersCreateWithoutChannelInput[] | Personal_Channels_UsersUncheckedCreateWithoutChannelInput[]
     connectOrCreate?: Personal_Channels_UsersCreateOrConnectWithoutChannelInput | Personal_Channels_UsersCreateOrConnectWithoutChannelInput[]
@@ -7842,6 +9294,20 @@ export namespace Prisma {
     update?: Personal_Channels_ListUpdateWithWhereUniqueWithoutChannelInput | Personal_Channels_ListUpdateWithWhereUniqueWithoutChannelInput[]
     updateMany?: Personal_Channels_ListUpdateManyWithWhereWithoutChannelInput | Personal_Channels_ListUpdateManyWithWhereWithoutChannelInput[]
     deleteMany?: Personal_Channels_ListScalarWhereInput | Personal_Channels_ListScalarWhereInput[]
+  }
+
+  export type Personal_Channels_ChatUncheckedUpdateManyWithoutChannelNestedInput = {
+    create?: XOR<Personal_Channels_ChatCreateWithoutChannelInput, Personal_Channels_ChatUncheckedCreateWithoutChannelInput> | Personal_Channels_ChatCreateWithoutChannelInput[] | Personal_Channels_ChatUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: Personal_Channels_ChatCreateOrConnectWithoutChannelInput | Personal_Channels_ChatCreateOrConnectWithoutChannelInput[]
+    upsert?: Personal_Channels_ChatUpsertWithWhereUniqueWithoutChannelInput | Personal_Channels_ChatUpsertWithWhereUniqueWithoutChannelInput[]
+    createMany?: Personal_Channels_ChatCreateManyChannelInputEnvelope
+    set?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    disconnect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    delete?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    connect?: Personal_Channels_ChatWhereUniqueInput | Personal_Channels_ChatWhereUniqueInput[]
+    update?: Personal_Channels_ChatUpdateWithWhereUniqueWithoutChannelInput | Personal_Channels_ChatUpdateWithWhereUniqueWithoutChannelInput[]
+    updateMany?: Personal_Channels_ChatUpdateManyWithWhereWithoutChannelInput | Personal_Channels_ChatUpdateManyWithWhereWithoutChannelInput[]
+    deleteMany?: Personal_Channels_ChatScalarWhereInput | Personal_Channels_ChatScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPersonal_Channels_UsersInput = {
@@ -7898,6 +9364,34 @@ export namespace Prisma {
     upsert?: Personal_ChannelsUpsertWithoutPersonal_Channels_ListInput
     connect?: Personal_ChannelsWhereUniqueInput
     update?: XOR<XOR<Personal_ChannelsUpdateToOneWithWhereWithoutPersonal_Channels_ListInput, Personal_ChannelsUpdateWithoutPersonal_Channels_ListInput>, Personal_ChannelsUncheckedUpdateWithoutPersonal_Channels_ListInput>
+  }
+
+  export type UserCreateNestedOneWithoutPersonal_Channels_ChatInput = {
+    create?: XOR<UserCreateWithoutPersonal_Channels_ChatInput, UserUncheckedCreateWithoutPersonal_Channels_ChatInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPersonal_Channels_ChatInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type Personal_ChannelsCreateNestedOneWithoutPersonal_Channels_ChatInput = {
+    create?: XOR<Personal_ChannelsCreateWithoutPersonal_Channels_ChatInput, Personal_ChannelsUncheckedCreateWithoutPersonal_Channels_ChatInput>
+    connectOrCreate?: Personal_ChannelsCreateOrConnectWithoutPersonal_Channels_ChatInput
+    connect?: Personal_ChannelsWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutPersonal_Channels_ChatNestedInput = {
+    create?: XOR<UserCreateWithoutPersonal_Channels_ChatInput, UserUncheckedCreateWithoutPersonal_Channels_ChatInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPersonal_Channels_ChatInput
+    upsert?: UserUpsertWithoutPersonal_Channels_ChatInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPersonal_Channels_ChatInput, UserUpdateWithoutPersonal_Channels_ChatInput>, UserUncheckedUpdateWithoutPersonal_Channels_ChatInput>
+  }
+
+  export type Personal_ChannelsUpdateOneRequiredWithoutPersonal_Channels_ChatNestedInput = {
+    create?: XOR<Personal_ChannelsCreateWithoutPersonal_Channels_ChatInput, Personal_ChannelsUncheckedCreateWithoutPersonal_Channels_ChatInput>
+    connectOrCreate?: Personal_ChannelsCreateOrConnectWithoutPersonal_Channels_ChatInput
+    upsert?: Personal_ChannelsUpsertWithoutPersonal_Channels_ChatInput
+    connect?: Personal_ChannelsWhereUniqueInput
+    update?: XOR<XOR<Personal_ChannelsUpdateToOneWithWhereWithoutPersonal_Channels_ChatInput, Personal_ChannelsUpdateWithoutPersonal_Channels_ChatInput>, Personal_ChannelsUncheckedUpdateWithoutPersonal_Channels_ChatInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -8061,6 +9555,7 @@ export namespace Prisma {
     enabled?: boolean
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutChannelInput
     Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutChannelInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutChannelInput
   }
 
   export type Personal_ChannelsUncheckedCreateWithoutUserInput = {
@@ -8070,6 +9565,7 @@ export namespace Prisma {
     enabled?: boolean
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutChannelInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutChannelInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type Personal_ChannelsCreateOrConnectWithoutUserInput = {
@@ -8125,6 +9621,33 @@ export namespace Prisma {
 
   export type Personal_Channels_ListCreateManyUserInputEnvelope = {
     data: Personal_Channels_ListCreateManyUserInput | Personal_Channels_ListCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type Personal_Channels_ChatCreateWithoutUserInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    content: string
+    enabled?: boolean
+    channel: Personal_ChannelsCreateNestedOneWithoutPersonal_Channels_ChatInput
+  }
+
+  export type Personal_Channels_ChatUncheckedCreateWithoutUserInput = {
+    id?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    channelId: number
+    content: string
+    enabled?: boolean
+  }
+
+  export type Personal_Channels_ChatCreateOrConnectWithoutUserInput = {
+    where: Personal_Channels_ChatWhereUniqueInput
+    create: XOR<Personal_Channels_ChatCreateWithoutUserInput, Personal_Channels_ChatUncheckedCreateWithoutUserInput>
+  }
+
+  export type Personal_Channels_ChatCreateManyUserInputEnvelope = {
+    data: Personal_Channels_ChatCreateManyUserInput | Personal_Channels_ChatCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -8252,6 +9775,35 @@ export namespace Prisma {
     enabled?: BoolFilter<"Personal_Channels_List"> | boolean
   }
 
+  export type Personal_Channels_ChatUpsertWithWhereUniqueWithoutUserInput = {
+    where: Personal_Channels_ChatWhereUniqueInput
+    update: XOR<Personal_Channels_ChatUpdateWithoutUserInput, Personal_Channels_ChatUncheckedUpdateWithoutUserInput>
+    create: XOR<Personal_Channels_ChatCreateWithoutUserInput, Personal_Channels_ChatUncheckedCreateWithoutUserInput>
+  }
+
+  export type Personal_Channels_ChatUpdateWithWhereUniqueWithoutUserInput = {
+    where: Personal_Channels_ChatWhereUniqueInput
+    data: XOR<Personal_Channels_ChatUpdateWithoutUserInput, Personal_Channels_ChatUncheckedUpdateWithoutUserInput>
+  }
+
+  export type Personal_Channels_ChatUpdateManyWithWhereWithoutUserInput = {
+    where: Personal_Channels_ChatScalarWhereInput
+    data: XOR<Personal_Channels_ChatUpdateManyMutationInput, Personal_Channels_ChatUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type Personal_Channels_ChatScalarWhereInput = {
+    AND?: Personal_Channels_ChatScalarWhereInput | Personal_Channels_ChatScalarWhereInput[]
+    OR?: Personal_Channels_ChatScalarWhereInput[]
+    NOT?: Personal_Channels_ChatScalarWhereInput | Personal_Channels_ChatScalarWhereInput[]
+    id?: IntFilter<"Personal_Channels_Chat"> | number
+    createdAt?: DateTimeFilter<"Personal_Channels_Chat"> | Date | string
+    updatedAt?: DateTimeFilter<"Personal_Channels_Chat"> | Date | string
+    userId?: IntFilter<"Personal_Channels_Chat"> | number
+    channelId?: IntFilter<"Personal_Channels_Chat"> | number
+    content?: StringFilter<"Personal_Channels_Chat"> | string
+    enabled?: BoolFilter<"Personal_Channels_Chat"> | boolean
+  }
+
   export type UserCreateWithoutFriendsInput = {
     name: string
     email: string
@@ -8264,6 +9816,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFriendsInput = {
@@ -8279,6 +9832,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFriendsInput = {
@@ -8298,6 +9852,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFriendOfInput = {
@@ -8313,6 +9868,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFriendOfInput = {
@@ -8343,6 +9899,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFriendsInput = {
@@ -8358,6 +9915,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutFriendOfInput = {
@@ -8383,6 +9941,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFriendOfInput = {
@@ -8398,6 +9957,7 @@ export namespace Prisma {
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPersonalChannelsInput = {
@@ -8412,6 +9972,7 @@ export namespace Prisma {
     friendOf?: FriendCreateNestedManyWithoutFriendInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPersonalChannelsInput = {
@@ -8427,6 +9988,7 @@ export namespace Prisma {
     friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPersonalChannelsInput = {
@@ -8480,6 +10042,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type Personal_Channels_ChatCreateWithoutChannelInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    content: string
+    enabled?: boolean
+    user: UserCreateNestedOneWithoutPersonal_Channels_ChatInput
+  }
+
+  export type Personal_Channels_ChatUncheckedCreateWithoutChannelInput = {
+    id?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    content: string
+    enabled?: boolean
+  }
+
+  export type Personal_Channels_ChatCreateOrConnectWithoutChannelInput = {
+    where: Personal_Channels_ChatWhereUniqueInput
+    create: XOR<Personal_Channels_ChatCreateWithoutChannelInput, Personal_Channels_ChatUncheckedCreateWithoutChannelInput>
+  }
+
+  export type Personal_Channels_ChatCreateManyChannelInputEnvelope = {
+    data: Personal_Channels_ChatCreateManyChannelInput | Personal_Channels_ChatCreateManyChannelInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutPersonalChannelsInput = {
     update: XOR<UserUpdateWithoutPersonalChannelsInput, UserUncheckedUpdateWithoutPersonalChannelsInput>
     create: XOR<UserCreateWithoutPersonalChannelsInput, UserUncheckedCreateWithoutPersonalChannelsInput>
@@ -8503,6 +10092,7 @@ export namespace Prisma {
     friendOf?: FriendUpdateManyWithoutFriendNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPersonalChannelsInput = {
@@ -8518,6 +10108,7 @@ export namespace Prisma {
     friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type Personal_Channels_UsersUpsertWithWhereUniqueWithoutChannelInput = {
@@ -8552,6 +10143,22 @@ export namespace Prisma {
     data: XOR<Personal_Channels_ListUpdateManyMutationInput, Personal_Channels_ListUncheckedUpdateManyWithoutChannelInput>
   }
 
+  export type Personal_Channels_ChatUpsertWithWhereUniqueWithoutChannelInput = {
+    where: Personal_Channels_ChatWhereUniqueInput
+    update: XOR<Personal_Channels_ChatUpdateWithoutChannelInput, Personal_Channels_ChatUncheckedUpdateWithoutChannelInput>
+    create: XOR<Personal_Channels_ChatCreateWithoutChannelInput, Personal_Channels_ChatUncheckedCreateWithoutChannelInput>
+  }
+
+  export type Personal_Channels_ChatUpdateWithWhereUniqueWithoutChannelInput = {
+    where: Personal_Channels_ChatWhereUniqueInput
+    data: XOR<Personal_Channels_ChatUpdateWithoutChannelInput, Personal_Channels_ChatUncheckedUpdateWithoutChannelInput>
+  }
+
+  export type Personal_Channels_ChatUpdateManyWithWhereWithoutChannelInput = {
+    where: Personal_Channels_ChatScalarWhereInput
+    data: XOR<Personal_Channels_ChatUpdateManyMutationInput, Personal_Channels_ChatUncheckedUpdateManyWithoutChannelInput>
+  }
+
   export type UserCreateWithoutPersonal_Channels_UsersInput = {
     name: string
     email: string
@@ -8564,6 +10171,7 @@ export namespace Prisma {
     friendOf?: FriendCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPersonal_Channels_UsersInput = {
@@ -8579,6 +10187,7 @@ export namespace Prisma {
     friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPersonal_Channels_UsersInput = {
@@ -8592,6 +10201,7 @@ export namespace Prisma {
     enabled?: boolean
     user: UserCreateNestedOneWithoutPersonalChannelsInput
     Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutChannelInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutChannelInput
   }
 
   export type Personal_ChannelsUncheckedCreateWithoutPersonal_Channels_UsersInput = {
@@ -8601,6 +10211,7 @@ export namespace Prisma {
     userId: number
     enabled?: boolean
     Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutChannelInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type Personal_ChannelsCreateOrConnectWithoutPersonal_Channels_UsersInput = {
@@ -8631,6 +10242,7 @@ export namespace Prisma {
     friendOf?: FriendUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPersonal_Channels_UsersInput = {
@@ -8646,6 +10258,7 @@ export namespace Prisma {
     friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type Personal_ChannelsUpsertWithoutPersonal_Channels_UsersInput = {
@@ -8665,6 +10278,7 @@ export namespace Prisma {
     enabled?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutPersonalChannelsNestedInput
     Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutChannelNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutChannelNestedInput
   }
 
   export type Personal_ChannelsUncheckedUpdateWithoutPersonal_Channels_UsersInput = {
@@ -8674,6 +10288,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     enabled?: BoolFieldUpdateOperationsInput | boolean
     Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutChannelNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type UserCreateWithoutPersonal_Channels_ListInput = {
@@ -8688,6 +10303,7 @@ export namespace Prisma {
     friendOf?: FriendCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPersonal_Channels_ListInput = {
@@ -8703,6 +10319,7 @@ export namespace Prisma {
     friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutUserInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPersonal_Channels_ListInput = {
@@ -8716,6 +10333,7 @@ export namespace Prisma {
     enabled?: boolean
     user: UserCreateNestedOneWithoutPersonalChannelsInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutChannelInput
+    Personal_Channels_Chat?: Personal_Channels_ChatCreateNestedManyWithoutChannelInput
   }
 
   export type Personal_ChannelsUncheckedCreateWithoutPersonal_Channels_ListInput = {
@@ -8725,6 +10343,7 @@ export namespace Prisma {
     userId: number
     enabled?: boolean
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutChannelInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type Personal_ChannelsCreateOrConnectWithoutPersonal_Channels_ListInput = {
@@ -8755,6 +10374,7 @@ export namespace Prisma {
     friendOf?: FriendUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPersonal_Channels_ListInput = {
@@ -8770,6 +10390,7 @@ export namespace Prisma {
     friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutUserNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type Personal_ChannelsUpsertWithoutPersonal_Channels_ListInput = {
@@ -8789,6 +10410,7 @@ export namespace Prisma {
     enabled?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutPersonalChannelsNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutChannelNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutChannelNestedInput
   }
 
   export type Personal_ChannelsUncheckedUpdateWithoutPersonal_Channels_ListInput = {
@@ -8798,6 +10420,139 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     enabled?: BoolFieldUpdateOperationsInput | boolean
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutChannelNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutChannelNestedInput
+  }
+
+  export type UserCreateWithoutPersonal_Channels_ChatInput = {
+    name: string
+    email: string
+    password: string
+    userid: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    enabled?: boolean
+    friends?: FriendCreateNestedManyWithoutUserInput
+    friendOf?: FriendCreateNestedManyWithoutFriendInput
+    personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
+    Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutUserInput
+    Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPersonal_Channels_ChatInput = {
+    id?: number
+    name: string
+    email: string
+    password: string
+    userid: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    enabled?: boolean
+    friends?: FriendUncheckedCreateNestedManyWithoutUserInput
+    friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
+    personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
+    Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutUserInput
+    Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPersonal_Channels_ChatInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPersonal_Channels_ChatInput, UserUncheckedCreateWithoutPersonal_Channels_ChatInput>
+  }
+
+  export type Personal_ChannelsCreateWithoutPersonal_Channels_ChatInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    enabled?: boolean
+    user: UserCreateNestedOneWithoutPersonalChannelsInput
+    Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutChannelInput
+    Personal_Channels_List?: Personal_Channels_ListCreateNestedManyWithoutChannelInput
+  }
+
+  export type Personal_ChannelsUncheckedCreateWithoutPersonal_Channels_ChatInput = {
+    id?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    enabled?: boolean
+    Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutChannelInput
+    Personal_Channels_List?: Personal_Channels_ListUncheckedCreateNestedManyWithoutChannelInput
+  }
+
+  export type Personal_ChannelsCreateOrConnectWithoutPersonal_Channels_ChatInput = {
+    where: Personal_ChannelsWhereUniqueInput
+    create: XOR<Personal_ChannelsCreateWithoutPersonal_Channels_ChatInput, Personal_ChannelsUncheckedCreateWithoutPersonal_Channels_ChatInput>
+  }
+
+  export type UserUpsertWithoutPersonal_Channels_ChatInput = {
+    update: XOR<UserUpdateWithoutPersonal_Channels_ChatInput, UserUncheckedUpdateWithoutPersonal_Channels_ChatInput>
+    create: XOR<UserCreateWithoutPersonal_Channels_ChatInput, UserUncheckedCreateWithoutPersonal_Channels_ChatInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPersonal_Channels_ChatInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPersonal_Channels_ChatInput, UserUncheckedUpdateWithoutPersonal_Channels_ChatInput>
+  }
+
+  export type UserUpdateWithoutPersonal_Channels_ChatInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    userid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    friends?: FriendUpdateManyWithoutUserNestedInput
+    friendOf?: FriendUpdateManyWithoutFriendNestedInput
+    personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
+    Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutUserNestedInput
+    Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPersonal_Channels_ChatInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    userid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    friends?: FriendUncheckedUpdateManyWithoutUserNestedInput
+    friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
+    personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
+    Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutUserNestedInput
+    Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type Personal_ChannelsUpsertWithoutPersonal_Channels_ChatInput = {
+    update: XOR<Personal_ChannelsUpdateWithoutPersonal_Channels_ChatInput, Personal_ChannelsUncheckedUpdateWithoutPersonal_Channels_ChatInput>
+    create: XOR<Personal_ChannelsCreateWithoutPersonal_Channels_ChatInput, Personal_ChannelsUncheckedCreateWithoutPersonal_Channels_ChatInput>
+    where?: Personal_ChannelsWhereInput
+  }
+
+  export type Personal_ChannelsUpdateToOneWithWhereWithoutPersonal_Channels_ChatInput = {
+    where?: Personal_ChannelsWhereInput
+    data: XOR<Personal_ChannelsUpdateWithoutPersonal_Channels_ChatInput, Personal_ChannelsUncheckedUpdateWithoutPersonal_Channels_ChatInput>
+  }
+
+  export type Personal_ChannelsUpdateWithoutPersonal_Channels_ChatInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutPersonalChannelsNestedInput
+    Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutChannelNestedInput
+    Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutChannelNestedInput
+  }
+
+  export type Personal_ChannelsUncheckedUpdateWithoutPersonal_Channels_ChatInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutChannelNestedInput
+    Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type FriendCreateManyUserInput = {
@@ -8832,6 +10587,15 @@ export namespace Prisma {
   export type Personal_Channels_ListCreateManyUserInput = {
     id?: number
     channelId: number
+    enabled?: boolean
+  }
+
+  export type Personal_Channels_ChatCreateManyUserInput = {
+    id?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    channelId: number
+    content: string
     enabled?: boolean
   }
 
@@ -8881,6 +10645,7 @@ export namespace Prisma {
     enabled?: BoolFieldUpdateOperationsInput | boolean
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutChannelNestedInput
     Personal_Channels_List?: Personal_Channels_ListUpdateManyWithoutChannelNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUpdateManyWithoutChannelNestedInput
   }
 
   export type Personal_ChannelsUncheckedUpdateWithoutUserInput = {
@@ -8890,6 +10655,7 @@ export namespace Prisma {
     enabled?: BoolFieldUpdateOperationsInput | boolean
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutChannelNestedInput
     Personal_Channels_List?: Personal_Channels_ListUncheckedUpdateManyWithoutChannelNestedInput
+    Personal_Channels_Chat?: Personal_Channels_ChatUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type Personal_ChannelsUncheckedUpdateManyWithoutUserInput = {
@@ -8939,6 +10705,32 @@ export namespace Prisma {
     enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type Personal_Channels_ChatUpdateWithoutUserInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    channel?: Personal_ChannelsUpdateOneRequiredWithoutPersonal_Channels_ChatNestedInput
+  }
+
+  export type Personal_Channels_ChatUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    channelId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type Personal_Channels_ChatUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    channelId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type Personal_Channels_UsersCreateManyChannelInput = {
     id?: number
     createdAt?: Date | string
@@ -8950,6 +10742,15 @@ export namespace Prisma {
   export type Personal_Channels_ListCreateManyChannelInput = {
     id?: number
     userId: number
+    enabled?: boolean
+  }
+
+  export type Personal_Channels_ChatCreateManyChannelInput = {
+    id?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    content: string
     enabled?: boolean
   }
 
@@ -8990,6 +10791,32 @@ export namespace Prisma {
   export type Personal_Channels_ListUncheckedUpdateManyWithoutChannelInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type Personal_Channels_ChatUpdateWithoutChannelInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutPersonal_Channels_ChatNestedInput
+  }
+
+  export type Personal_Channels_ChatUncheckedUpdateWithoutChannelInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type Personal_Channels_ChatUncheckedUpdateManyWithoutChannelInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 

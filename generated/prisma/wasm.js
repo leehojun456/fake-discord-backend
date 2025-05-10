@@ -160,6 +160,16 @@ exports.Prisma.Personal_Channels_ListScalarFieldEnum = {
   enabled: 'enabled'
 };
 
+exports.Prisma.Personal_Channels_ChatScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  channelId: 'channelId',
+  content: 'content',
+  enabled: 'enabled'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -172,13 +182,18 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   userid: 'userid'
 };
 
+exports.Prisma.Personal_Channels_ChatOrderByRelevanceFieldEnum = {
+  content: 'content'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
   Friend: 'Friend',
   Personal_Channels: 'Personal_Channels',
   Personal_Channels_Users: 'Personal_Channels_Users',
-  Personal_Channels_List: 'Personal_Channels_List'
+  Personal_Channels_List: 'Personal_Channels_List',
+  Personal_Channels_Chat: 'Personal_Channels_Chat'
 };
 
 /**

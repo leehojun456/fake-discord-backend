@@ -7,6 +7,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { Request } from 'express';
+import { Socket } from 'socket.io';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -36,5 +37,35 @@ export class AuthGuard implements CanActivate {
   private extractTokenFromHeader(request: Request): string | undefined {
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
     return type === 'Bearer' ? token : undefined;
+  }
+}
+
+@Injectable()
+export class SocketIoJwtGuard implements CanActivate {
+  constructor(private readonly jwtService: JwtService) {}
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const socket = context.switchToWs().getClient<Socket>();
+    const token = socket.handshake.auth.token;
+
+    console.log('소켓에서 받은 토큰:', token); // ✅ 확인용 로그
+
+    if (!token) {
+      throw new UnauthorizedException('No token provided');
+    }
+
+    try {
+      const payload = await this.jwtService.verifyAsync(token, {
+        secret: jwtConstants.secret,
+      });
+
+      console.log('토큰 payload:', payload); // ✅ 확인용 로그
+
+      socket.data.user = payload;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
+
+    return true;
   }
 }

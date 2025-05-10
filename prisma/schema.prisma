@@ -31,6 +31,8 @@ model User {
   Personal_Channels_Users Personal_Channels_Users[] @relation("id")
 
   Personal_Channels_List Personal_Channels_List[] @relation("id")
+
+  Personal_Channels_Chat Personal_Channels_Chat[] @relation("id")
 }
 
 model Friend {
@@ -55,6 +57,8 @@ model Personal_Channels {
   Personal_Channels_Users Personal_Channels_Users[] @relation("id")
 
   Personal_Channels_List Personal_Channels_List[] @relation("id")
+
+  Personal_Channels_Chat Personal_Channels_Chat[] @relation("id")
 }
 
 model Personal_Channels_Users {
@@ -75,4 +79,16 @@ model Personal_Channels_List {
   enabled   Boolean  @default(true)
   user      User     @relation("id", fields: [userId], references: [id]) // 채널을 추가한 사용자
   channel   Personal_Channels @relation("id", fields: [channelId], references: [id]) // 추가된 채널
+}
+
+model Personal_Channels_Chat {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  channelId Int
+  content   String
+  enabled   Boolean  @default(true)
+  user      User     @relation("id", fields: [userId], references: [id]) // 채팅을 보낸 유저
+  channel   Personal_Channels @relation("id", fields: [channelId], references: [id]) // 채팅을 보낸 채널
 }

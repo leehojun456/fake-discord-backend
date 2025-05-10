@@ -18,9 +18,11 @@ import { AuthGuard } from 'src/auth/auth.guard';
 export class FriendController {
   constructor(private readonly friendService: FriendService) {}
 
+  @UseGuards(AuthGuard)
   @Post()
-  async create(@Body() createFriendDto: CreateFriendDto) {
-    return await this.friendService.create(createFriendDto);
+  async create(@Request() req: any, @Body() createFriendDto: CreateFriendDto) {
+    const userId = req.user.id;
+    return await this.friendService.create(userId, createFriendDto);
   }
 
   @UseGuards(AuthGuard)
@@ -31,8 +33,8 @@ export class FriendController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.friendService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.friendService.findOne(+id);
   }
 
   @Patch(':id')

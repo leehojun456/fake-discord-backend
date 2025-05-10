@@ -8,16 +8,20 @@ import {
   Delete,
   UseGuards,
   Request,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { PersonalchannelsService } from './personalchannels.service';
 import { CreatePersonalchannelDto } from './dto/create-personalchannel.dto';
 import { UpdatePersonalchannelDto } from './dto/update-personalchannel.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 
+import { PersonalchannelschatService } from 'src/personalchannelschat/personalchannelschat.service';
+
 @Controller('personalchannels')
 export class PersonalchannelsController {
   constructor(
     private readonly personalchannelsService: PersonalchannelsService,
+    private readonly personalchannelschatService: PersonalchannelschatService,
   ) {}
 
   @UseGuards(AuthGuard)
@@ -33,9 +37,17 @@ export class PersonalchannelsController {
     );
   }
 
+  @UseGuards(AuthGuard)
   @Get()
-  findAll() {
-    return this.personalchannelsService.findAll();
+  async findAll(@Request() req: any) {
+    const userId = req.user.id;
+    return await this.personalchannelsService.findAll(userId);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get(':id/messages')
+  async findAllMessages(@Param('id', ParseIntPipe) id: number) {
+    return await this.personalchannelschatService.findAllMessages(id);
   }
 
   @Get(':id')

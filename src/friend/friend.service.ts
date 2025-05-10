@@ -12,27 +12,24 @@ export class FriendService {
   constructor(private readonly prismaService: PrismaService) {}
 
   // 친구 추가
-  async create(createFriendDto: CreateFriendDto) {
-    console.log('data', createFriendDto);
+  async create(userId: number, createFriendDto: CreateFriendDto) {
     // 친구 ID가 존재하는지 확인
     const data = await this.prismaService.user.findFirst({
       where: { userid: createFriendDto.friendId },
     });
 
-    console.log('data', data);
-
     if (!data?.id) {
       throw new NotFoundException('해당하는 친구 ID를 가진 사용자가 없습니다.');
     }
 
-    if (data?.id == createFriendDto.userId) {
+    if (data?.id == userId) {
       throw new BadRequestException('자기 자신을 친구로 추가할 수 없습니다.');
     }
 
     // 이미 친구인지 확인
     const existingFriend = await this.prismaService.friend.findFirst({
       where: {
-        userId: createFriendDto.userId,
+        userId: userId,
         friendId: data.id,
       },
     });
@@ -44,7 +41,7 @@ export class FriendService {
     // 친구 추가
     await this.prismaService.friend.create({
       data: {
-        userId: createFriendDto.userId,
+        userId: userId,
         friendId: data?.id,
       },
     });
@@ -71,8 +68,16 @@ export class FriendService {
     return friends;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} friend`;
+  async findOne(id: number) {
+    // 친구 ID로 해당 유저 정보 조회
+    const friend = await this.prismaService.user.findUnique({
+      where: { id: id },
+      select: {
+        name: true,
+        userid: true,
+      },
+    });
+    return friend;
   }
 
   update(id: number, updateFriendDto: UpdateFriendDto) {
