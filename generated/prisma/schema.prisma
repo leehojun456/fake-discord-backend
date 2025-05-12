@@ -15,14 +15,19 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  userid    String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  enabled   Boolean  @default(true)
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  password    String
+  userid      String    @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  enabled     Boolean   @default(true)
+  phone       String?
+  avatar      String?
+  banner      String?
+  description String?
+  birthday    DateTime?
 
   friends          Friend[]            @relation("UserFriends") // 내가 친구를 추가한 목록
   friendOf         Friend[]            @relation("FriendOfUser") // 나를 친구로 추가한 목록

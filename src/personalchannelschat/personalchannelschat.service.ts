@@ -48,7 +48,7 @@ export class PersonalchannelschatService {
       const { userId, createdAt } = group[0];
       return {
         userId,
-        date: createdAt.toISOString().split('T')[0],
+        date: createdAt.toISOString().slice(0, 16).replace('T', ' '),
         messages: group,
       };
     });

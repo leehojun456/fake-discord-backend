@@ -1,21 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdatePhone, UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import bcrypt from 'bcrypt';
 import { randomInt } from 'crypto';
+import * as AWS from 'aws-sdk';
+import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { S3Service } from 'src/aws/s3.service';
+import { fileTypeFromBuffer } from 'file-type';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly s3Service: S3Service,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const hashgedPassword = await bcrypt.hash(createUserDto.password, 10);
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
     await this.prismaService.user.create({
       data: {
-        userid: createUserDto.name + randomInt(100000, 1000000),
         ...createUserDto,
-        password: hashgedPassword,
+        password: hashedPassword,
       },
     });
     return 'This action adds a new user';
@@ -25,12 +32,69 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    const user = await this.prismaService.user.findUnique({
+      where: { id },
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    if (user.avatar != null) {
+      // 파일 접근 가능한 URL 구성
+
+      user.avatar = (await this.s3Service.getSignedUrl(user.avatar)).toString();
+    }
+
+    return user;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  async phoneUpdate(id: number, updatePhone: UpdatePhone) {
+    try {
+      const updatedUser = await this.prismaService.user.update({
+        where: { id },
+        data: updatePhone,
+      });
+      console.log('updatedUser', updatedUser);
+      return updatedUser;
+    } catch (error) {
+      console.log('error', error);
+    }
     return `This action updates a #${id} user`;
+  }
+
+  async updateAvatar(id: number, image: any) {
+    // 파일 업로드 함수
+    const objectKey = `users/${id}/avatar/${id}-avatar.jpg`;
+
+    await this.s3Service.uploadFile(objectKey, image.buffer, image.mimetype);
+
+    await this.prismaService.user.update({
+      where: { id },
+      data: {
+        avatar: objectKey, // 업로드된 파일의 URL을 DB에 저장
+      },
+    });
+
+    return await this.s3Service.getSignedUrl(objectKey);
+  }
+
+  async updateBanner(id: number, image: any) {
+    const type = await fileTypeFromBuffer(image.buffer);
+    // 파일 업로드 함수
+    const objectKey = `users/${id}/banner/${id}-banner.${type}`;
+
+    await this.s3Service.uploadFile(objectKey, image.buffer, image.mimetype);
+
+    await this.prismaService.user.update({
+      where: { id },
+      data: {
+        banner: objectKey, // 업로드된 파일의 URL을 DB에 저장
+      },
+    });
+
+    return await this.s3Service.getSignedUrl(objectKey);
   }
 
   async remove(id: number) {

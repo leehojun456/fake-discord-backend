@@ -1429,6 +1429,11 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     enabled: boolean | null
+    phone: string | null
+    avatar: string | null
+    banner: string | null
+    description: string | null
+    birthday: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1440,6 +1445,11 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     enabled: boolean | null
+    phone: string | null
+    avatar: string | null
+    banner: string | null
+    description: string | null
+    birthday: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1451,6 +1461,11 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     enabled: number
+    phone: number
+    avatar: number
+    banner: number
+    description: number
+    birthday: number
     _all: number
   }
 
@@ -1472,6 +1487,11 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     enabled?: true
+    phone?: true
+    avatar?: true
+    banner?: true
+    description?: true
+    birthday?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1483,6 +1503,11 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     enabled?: true
+    phone?: true
+    avatar?: true
+    banner?: true
+    description?: true
+    birthday?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1494,6 +1519,11 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     enabled?: true
+    phone?: true
+    avatar?: true
+    banner?: true
+    description?: true
+    birthday?: true
     _all?: true
   }
 
@@ -1592,6 +1622,11 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     enabled: boolean
+    phone: string | null
+    avatar: string | null
+    banner: string | null
+    description: string | null
+    birthday: Date | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1622,6 +1657,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     enabled?: boolean
+    phone?: boolean
+    avatar?: boolean
+    banner?: boolean
+    description?: boolean
+    birthday?: boolean
     friends?: boolean | User$friendsArgs<ExtArgs>
     friendOf?: boolean | User$friendOfArgs<ExtArgs>
     personalChannels?: boolean | User$personalChannelsArgs<ExtArgs>
@@ -1642,9 +1682,14 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     enabled?: boolean
+    phone?: boolean
+    avatar?: boolean
+    banner?: boolean
+    description?: boolean
+    birthday?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "userid" | "createdAt" | "updatedAt" | "enabled", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "userid" | "createdAt" | "updatedAt" | "enabled" | "phone" | "avatar" | "banner" | "description" | "birthday", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     friends?: boolean | User$friendsArgs<ExtArgs>
     friendOf?: boolean | User$friendOfArgs<ExtArgs>
@@ -1674,6 +1719,11 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       enabled: boolean
+      phone: string | null
+      avatar: string | null
+      banner: string | null
+      description: string | null
+      birthday: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2057,6 +2107,11 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly enabled: FieldRef<"User", 'Boolean'>
+    readonly phone: FieldRef<"User", 'String'>
+    readonly avatar: FieldRef<"User", 'String'>
+    readonly banner: FieldRef<"User", 'String'>
+    readonly description: FieldRef<"User", 'String'>
+    readonly birthday: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -7559,7 +7614,12 @@ export namespace Prisma {
     userid: 'userid',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    enabled: 'enabled'
+    enabled: 'enabled',
+    phone: 'phone',
+    avatar: 'avatar',
+    banner: 'banner',
+    description: 'description',
+    birthday: 'birthday'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -7630,11 +7690,23 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
   export const UserOrderByRelevanceFieldEnum: {
     name: 'name',
     email: 'email',
     password: 'password',
-    userid: 'userid'
+    userid: 'userid',
+    phone: 'phone',
+    avatar: 'avatar',
+    banner: 'banner',
+    description: 'description'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
@@ -7702,6 +7774,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     enabled?: BoolFilter<"User"> | boolean
+    phone?: StringNullableFilter<"User"> | string | null
+    avatar?: StringNullableFilter<"User"> | string | null
+    banner?: StringNullableFilter<"User"> | string | null
+    description?: StringNullableFilter<"User"> | string | null
+    birthday?: DateTimeNullableFilter<"User"> | Date | string | null
     friends?: FriendListRelationFilter
     friendOf?: FriendListRelationFilter
     personalChannels?: Personal_ChannelsListRelationFilter
@@ -7719,6 +7796,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     enabled?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    avatar?: SortOrderInput | SortOrder
+    banner?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
     friends?: FriendOrderByRelationAggregateInput
     friendOf?: FriendOrderByRelationAggregateInput
     personalChannels?: Personal_ChannelsOrderByRelationAggregateInput
@@ -7740,6 +7822,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     enabled?: BoolFilter<"User"> | boolean
+    phone?: StringNullableFilter<"User"> | string | null
+    avatar?: StringNullableFilter<"User"> | string | null
+    banner?: StringNullableFilter<"User"> | string | null
+    description?: StringNullableFilter<"User"> | string | null
+    birthday?: DateTimeNullableFilter<"User"> | Date | string | null
     friends?: FriendListRelationFilter
     friendOf?: FriendListRelationFilter
     personalChannels?: Personal_ChannelsListRelationFilter
@@ -7757,6 +7844,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     enabled?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    avatar?: SortOrderInput | SortOrder
+    banner?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -7776,6 +7868,11 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     enabled?: BoolWithAggregatesFilter<"User"> | boolean
+    phone?: StringNullableWithAggregatesFilter<"User"> | string | null
+    avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
+    banner?: StringNullableWithAggregatesFilter<"User"> | string | null
+    description?: StringNullableWithAggregatesFilter<"User"> | string | null
+    birthday?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
 
   export type FriendWhereInput = {
@@ -8103,6 +8200,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendCreateNestedManyWithoutUserInput
     friendOf?: FriendCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
@@ -8120,6 +8222,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendUncheckedCreateNestedManyWithoutUserInput
     friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
@@ -8136,6 +8243,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUpdateManyWithoutUserNestedInput
     friendOf?: FriendUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
@@ -8153,6 +8265,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUncheckedUpdateManyWithoutUserNestedInput
     friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
@@ -8170,6 +8287,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -8180,6 +8302,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -8191,6 +8318,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type FriendCreateInput = {
@@ -8517,6 +8649,32 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type FriendListRelationFilter = {
     every?: FriendWhereInput
     some?: FriendWhereInput
@@ -8545,6 +8703,11 @@ export namespace Prisma {
     every?: Personal_Channels_ChatWhereInput
     some?: Personal_Channels_ChatWhereInput
     none?: Personal_Channels_ChatWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type FriendOrderByRelationAggregateInput = {
@@ -8582,6 +8745,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     enabled?: SortOrder
+    phone?: SortOrder
+    avatar?: SortOrder
+    banner?: SortOrder
+    description?: SortOrder
+    birthday?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -8597,6 +8765,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     enabled?: SortOrder
+    phone?: SortOrder
+    avatar?: SortOrder
+    banner?: SortOrder
+    description?: SortOrder
+    birthday?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -8608,6 +8781,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     enabled?: SortOrder
+    phone?: SortOrder
+    avatar?: SortOrder
+    banner?: SortOrder
+    description?: SortOrder
+    birthday?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -8668,6 +8846,38 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type UserScalarRelationFilter = {
@@ -8964,6 +9174,14 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type FriendUpdateManyWithoutUserNestedInput = {
@@ -9436,6 +9654,32 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -9501,6 +9745,49 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type FriendCreateWithoutUserInput = {
@@ -9812,6 +10099,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friendOf?: FriendCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutUserInput
@@ -9828,6 +10120,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutUserInput
@@ -9848,6 +10145,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendCreateNestedManyWithoutUserInput
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutUserInput
@@ -9864,6 +10166,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendUncheckedCreateNestedManyWithoutUserInput
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutUserInput
@@ -9895,6 +10202,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friendOf?: FriendUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutUserNestedInput
@@ -9911,6 +10223,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutUserNestedInput
@@ -9937,6 +10254,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUpdateManyWithoutUserNestedInput
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutUserNestedInput
@@ -9953,6 +10275,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUncheckedUpdateManyWithoutUserNestedInput
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutUserNestedInput
@@ -9968,6 +10295,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendCreateNestedManyWithoutUserInput
     friendOf?: FriendCreateNestedManyWithoutFriendInput
     Personal_Channels_Users?: Personal_Channels_UsersCreateNestedManyWithoutUserInput
@@ -9984,6 +10316,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendUncheckedCreateNestedManyWithoutUserInput
     friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedCreateNestedManyWithoutUserInput
@@ -10088,6 +10425,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUpdateManyWithoutUserNestedInput
     friendOf?: FriendUpdateManyWithoutFriendNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUpdateManyWithoutUserNestedInput
@@ -10104,6 +10446,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUncheckedUpdateManyWithoutUserNestedInput
     friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
     Personal_Channels_Users?: Personal_Channels_UsersUncheckedUpdateManyWithoutUserNestedInput
@@ -10167,6 +10514,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendCreateNestedManyWithoutUserInput
     friendOf?: FriendCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
@@ -10183,6 +10535,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendUncheckedCreateNestedManyWithoutUserInput
     friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
@@ -10238,6 +10595,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUpdateManyWithoutUserNestedInput
     friendOf?: FriendUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
@@ -10254,6 +10616,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUncheckedUpdateManyWithoutUserNestedInput
     friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
@@ -10299,6 +10666,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendCreateNestedManyWithoutUserInput
     friendOf?: FriendCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
@@ -10315,6 +10687,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendUncheckedCreateNestedManyWithoutUserInput
     friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
@@ -10370,6 +10747,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUpdateManyWithoutUserNestedInput
     friendOf?: FriendUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
@@ -10386,6 +10768,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUncheckedUpdateManyWithoutUserNestedInput
     friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput
@@ -10431,6 +10818,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendCreateNestedManyWithoutUserInput
     friendOf?: FriendCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsCreateNestedManyWithoutUserInput
@@ -10447,6 +10839,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     enabled?: boolean
+    phone?: string | null
+    avatar?: string | null
+    banner?: string | null
+    description?: string | null
+    birthday?: Date | string | null
     friends?: FriendUncheckedCreateNestedManyWithoutUserInput
     friendOf?: FriendUncheckedCreateNestedManyWithoutFriendInput
     personalChannels?: Personal_ChannelsUncheckedCreateNestedManyWithoutUserInput
@@ -10502,6 +10899,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUpdateManyWithoutUserNestedInput
     friendOf?: FriendUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUpdateManyWithoutUserNestedInput
@@ -10518,6 +10920,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     enabled?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     friends?: FriendUncheckedUpdateManyWithoutUserNestedInput
     friendOf?: FriendUncheckedUpdateManyWithoutFriendNestedInput
     personalChannels?: Personal_ChannelsUncheckedUpdateManyWithoutUserNestedInput

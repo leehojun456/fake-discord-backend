@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreatePersonalchannelDto } from './dto/create-personalchannel.dto';
 import { UpdatePersonalchannelDto } from './dto/update-personalchannel.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { channel } from 'diagnostics_channel';
 
 @Injectable()
 export class PersonalchannelsService {
@@ -12,13 +13,16 @@ export class PersonalchannelsService {
     userId: number,
     createPersonalchannelDto: CreatePersonalchannelDto,
   ) {
-    const targetUserIds = createPersonalchannelDto.userId.sort(); // 정렬된 유저 ID 배열
+    createPersonalchannelDto.userId = [
+      ...createPersonalchannelDto.userId,
+      userId,
+    ];
 
     // 모든 유저 ID를 포함하는 채널을 찾습니다.
     const allUserChannels =
       await this.prismaService.personal_Channels_Users.findMany({
         where: {
-          userId: { in: targetUserIds },
+          userId: { in: createPersonalchannelDto.userId },
         },
       });
 
@@ -38,7 +42,10 @@ export class PersonalchannelsService {
     let existingChannelId: number | null = null;
     for (const [channelId, userIds] of channelUserMap.entries()) {
       const sortedUserIds = userIds.sort();
-      if (JSON.stringify(sortedUserIds) === JSON.stringify(targetUserIds)) {
+      if (
+        JSON.stringify(sortedUserIds) ===
+        JSON.stringify(createPersonalchannelDto.userId.sort())
+      ) {
         existingChannelId = channelId;
         break;
       }
@@ -46,7 +53,10 @@ export class PersonalchannelsService {
 
     if (existingChannelId) {
       // 4. 이미 존재하는 채널이 있으면 해당 채널 ID를 사용합니다.
-      return existingChannelId;
+      return {
+        channelId: existingChannelId,
+        isExisting: true,
+      };
     }
 
     // 4. 없으면 새로운 채널을 생성합니다.
@@ -59,7 +69,7 @@ export class PersonalchannelsService {
       });
 
       // 채팅방에 참여하는 유저를 추가합니다.
-      const user = await prisma.personal_Channels_Users.createMany({
+      await prisma.personal_Channels_Users.createMany({
         data: createPersonalchannelDto.userId.map((userId) => ({
           userId: userId,
           channelId: channel.id,
@@ -67,15 +77,17 @@ export class PersonalchannelsService {
       });
 
       // 내 채팅 리스트에 추가합니다.
-      const list = await prisma.personal_Channels_List.create({
+      await prisma.personal_Channels_List.create({
         data: {
           userId: userId,
           channelId: channel.id,
         },
       });
-      return { channel, user, list };
     });
-    return reuslt;
+    return {
+      channelId: existingChannelId,
+      isExisting: false,
+    };
   }
 
   async findAll(userId: number) {

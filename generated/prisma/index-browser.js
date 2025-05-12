@@ -125,7 +125,12 @@ exports.Prisma.UserScalarFieldEnum = {
   userid: 'userid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  enabled: 'enabled'
+  enabled: 'enabled',
+  phone: 'phone',
+  avatar: 'avatar',
+  banner: 'banner',
+  description: 'description',
+  birthday: 'birthday'
 };
 
 exports.Prisma.FriendScalarFieldEnum = {
@@ -175,11 +180,20 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
-  userid: 'userid'
+  userid: 'userid',
+  phone: 'phone',
+  avatar: 'avatar',
+  banner: 'banner',
+  description: 'description'
 };
 
 exports.Prisma.Personal_Channels_ChatOrderByRelevanceFieldEnum = {

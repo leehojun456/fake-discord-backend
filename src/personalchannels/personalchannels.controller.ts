@@ -9,6 +9,7 @@ import {
   UseGuards,
   Request,
   ParseIntPipe,
+  Response,
 } from '@nestjs/common';
 import { PersonalchannelsService } from './personalchannels.service';
 import { CreatePersonalchannelDto } from './dto/create-personalchannel.dto';
@@ -28,13 +29,28 @@ export class PersonalchannelsController {
   @Post()
   async create(
     @Request() req: any,
+    @Response() res: any,
     @Body() createPersonalchannelDto: CreatePersonalchannelDto,
   ) {
     const userId = req.user.id;
-    return await this.personalchannelsService.create(
+    const result = await this.personalchannelsService.create(
       userId,
       createPersonalchannelDto,
     );
+
+    if (result.isExisting) {
+      return res.status(200).json({
+        statusCode: 200,
+        message: '기존 채널이 존재합니다.',
+        data: { channelId: result.channelId },
+      });
+    }
+
+    return res.status(201).json({
+      statusCode: 201,
+      message: '새로운 채널이 생성되었습니다.',
+      data: { channelId: result.channelId },
+    });
   }
 
   @UseGuards(AuthGuard)

@@ -6,42 +6,75 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Request,
+  UploadedFile,
+  UseInterceptors,
+  ParseFilePipe,
+  MaxFileSizeValidator,
+  FileTypeValidator,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdatePhone, UpdateUserDto } from './dto/update-user.dto';
 import { faker } from '@faker-js/faker';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post('/register')
   async create(@Body() createUserDto: CreateUserDto) {
     console.log('createUserDto', createUserDto);
-    // for (let i = 0; i < 1000; i++) {
-    //   this.userService.create({
-    //     email: faker.internet.email(),
-    //     name: faker.person.firstName(),
-    //     password: faker.internet.password(),
-    //   });
-    // }
     return this.userService.create(createUserDto);
   }
 
+  @UseGuards(AuthGuard)
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  async findOne(@Request() req: any) {
+    const userId = req.user.id;
+    return await this.userService.findOne(userId);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  @UseGuards(AuthGuard)
+  @Patch('/phone')
+  async updatePhone(@Request() req: any, @Body() updatePhone: UpdatePhone) {
+    const userId = req.user.id;
+    return await this.userService.phoneUpdate(userId, updatePhone);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  @UseGuards(AuthGuard)
+  @Patch('/avatar')
+  @UseInterceptors(FileInterceptor('file'))
+  async updateAvatar(
+    @Request() req: any,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [],
+      }),
+    )
+    files: Express.Multer.File,
+  ) {
+    const userId = req.user.id;
+    return await this.userService.updateAvatar(userId, files);
+  }
+
+  @UseGuards(AuthGuard)
+  @Patch('/banner')
+  @UseInterceptors(FileInterceptor('file'))
+  async updateBanner(
+    @Request() req: any,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [],
+      }),
+    )
+    files: Express.Multer.File,
+  ) {
+    const userId = req.user.id;
+    return await this.userService.updateBanner(userId, files);
   }
 
   @Delete(':id')

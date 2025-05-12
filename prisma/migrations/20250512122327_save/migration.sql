@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE `user` ADD COLUMN `avatar` VARCHAR(191) NULL,
+    ADD COLUMN `banner` VARCHAR(191) NULL,
+    ADD COLUMN `birthday` DATETIME(3) NULL,
+    ADD COLUMN `description` VARCHAR(191) NULL,
+    ADD COLUMN `phone` VARCHAR(191) NULL;

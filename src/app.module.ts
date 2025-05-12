@@ -11,6 +11,9 @@ import { PersonalchannelsModule } from './personalchannels/personalchannels.modu
 import { GatewayModule } from './gateway/gateway.module';
 import { SocketIoJwtGuard } from './auth/auth.guard';
 import { PersonalchannelschatModule } from './personalchannelschat/personalchannelschat.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { MailModule } from './mail/mail.module';
+import { S3Service } from './aws/s3.service';
 
 @Module({
   imports: [

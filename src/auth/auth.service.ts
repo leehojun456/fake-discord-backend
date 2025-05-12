@@ -19,10 +19,13 @@ export class AuthService {
     if (email == null || password == null) {
       throw new BadRequestException('이메일과 비밀번호를 입력해주세요.');
     }
+    console.log('email', email);
 
     const user = await this.prisma.user.findFirst({
       where: { email },
     });
+
+    console.log('user', user);
 
     if (!user) {
       throw new UnauthorizedException('해당 이메일을 가진 사용자가 없습니다.');
@@ -30,13 +33,11 @@ export class AuthService {
 
     const result = await bcrypt.compare(password, user.password);
 
-    console.log('result', result);
     if (result) {
+      console.log('비밀번호 일치');
       const payload = { email: user.email, id: user.id };
       return { accessToken: await this.jwtService.signAsync(payload) };
     }
-    if (!result) {
-      throw new UnauthorizedException('비밀번호가 일치하지 않습니다.');
-    }
+    throw new UnauthorizedException('비밀번호가 일치하지 않습니다.');
   }
 }
