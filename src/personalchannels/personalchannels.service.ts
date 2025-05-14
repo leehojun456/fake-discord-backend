@@ -3,10 +3,14 @@ import { CreatePersonalchannelDto } from './dto/create-personalchannel.dto';
 import { UpdatePersonalchannelDto } from './dto/update-personalchannel.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { channel } from 'diagnostics_channel';
+import { S3Service } from 'src/aws/s3.service';
 
 @Injectable()
 export class PersonalchannelsService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly s3Service: S3Service,
+  ) {}
 
   // 채팅방 생성
   async create(
@@ -37,6 +41,7 @@ export class PersonalchannelsService {
       }
       channelUserMap.get(channelId)?.push(userId);
     });
+    console.log('existingChannelId', channelUserMap);
 
     // 3. 모든 유저가 정확히 참여 중인 채널이 있는지 검사합니다.
     let existingChannelId: number | null = null;
@@ -50,6 +55,8 @@ export class PersonalchannelsService {
         break;
       }
     }
+
+    console.log('existingChannelId', existingChannelId);
 
     if (existingChannelId) {
       // 4. 이미 존재하는 채널이 있으면 해당 채널 ID를 사용합니다.
@@ -127,8 +134,35 @@ export class PersonalchannelsService {
     return channels;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} personalchannel`;
+  async findChannelUsers(id: number) {
+    const users = await this.prismaService.personal_Channels_Users.findMany({
+      where: { channelId: id },
+      select: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            avatar: true,
+          },
+        },
+      },
+    });
+
+    console.log('users', users);
+
+    for (const user of users) {
+      const avatar = user.user.avatar;
+      console.log('user.user.avatar', user);
+
+      if (avatar != null) {
+        // 파일 접근 가능한 URL 구성
+        user.user.avatar = (
+          await this.s3Service.getSignedUrl(avatar)
+        ).toString();
+        console.log('user.user.avatar', user.user.avatar);
+      }
+    }
+    return users;
   }
 
   update(id: number, updatePersonalchannelDto: UpdatePersonalchannelDto) {

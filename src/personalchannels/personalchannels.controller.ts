@@ -66,9 +66,10 @@ export class PersonalchannelsController {
     return await this.personalchannelschatService.findAllMessages(id);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.personalchannelsService.findOne(+id);
+  @UseGuards(AuthGuard)
+  @Get(':id/users')
+  async findChannelUsers(@Param('id') id: string) {
+    return await this.personalchannelsService.findChannelUsers(+id);
   }
 
   @Patch(':id')

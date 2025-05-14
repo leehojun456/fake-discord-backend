@@ -11,13 +11,10 @@ import {
   UploadedFile,
   UseInterceptors,
   ParseFilePipe,
-  MaxFileSizeValidator,
-  FileTypeValidator,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdatePhone, UpdateUserDto } from './dto/update-user.dto';
-import { faker } from '@faker-js/faker';
+import { UpdatePhone } from './dto/update-user.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 
@@ -36,6 +33,12 @@ export class UserController {
   async findOne(@Request() req: any) {
     const userId = req.user.id;
     return await this.userService.findOne(userId);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get(':id')
+  async findUser(@Param('id') id: string) {
+    return await this.userService.findUser(+id);
   }
 
   @UseGuards(AuthGuard)

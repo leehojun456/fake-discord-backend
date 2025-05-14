@@ -46,6 +46,7 @@ model Friend {
   friendId  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  enabled   Boolean  @default(false)
 
   user   User @relation("UserFriends", fields: [userId], references: [id]) // 친구를 추가한 사용자
   friend User @relation("FriendOfUser", fields: [friendId], references: [id]) // 추가된 친구 사용자

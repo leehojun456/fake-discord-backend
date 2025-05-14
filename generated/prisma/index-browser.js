@@ -138,7 +138,8 @@ exports.Prisma.FriendScalarFieldEnum = {
   userId: 'userId',
   friendId: 'friendId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  enabled: 'enabled'
 };
 
 exports.Prisma.Personal_ChannelsScalarFieldEnum = {

@@ -41,10 +41,31 @@ export class UserService {
       return null;
     }
 
-    if (user.avatar != null) {
+    if (user.avatar != null && user.banner != null) {
       // 파일 접근 가능한 URL 구성
-
       user.avatar = (await this.s3Service.getSignedUrl(user.avatar)).toString();
+      user.banner = (await this.s3Service.getSignedUrl(user.banner)).toString();
+    }
+
+    return user;
+  }
+
+  async findUser(id: number) {
+    const user = await this.prismaService.user.findUnique({
+      where: { id },
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    // 파일 접근 가능한 URL 구성
+    if (user.avatar != null) {
+      user.avatar = (await this.s3Service.getSignedUrl(user.avatar)).toString();
+    }
+
+    if (user.banner != null) {
+      user.banner = (await this.s3Service.getSignedUrl(user.banner)).toString();
     }
 
     return user;
@@ -81,9 +102,8 @@ export class UserService {
   }
 
   async updateBanner(id: number, image: any) {
-    const type = await fileTypeFromBuffer(image.buffer);
     // 파일 업로드 함수
-    const objectKey = `users/${id}/banner/${id}-banner.${type}`;
+    const objectKey = `users/${id}/banner/${id}-banner.jpg`;
 
     await this.s3Service.uploadFile(objectKey, image.buffer, image.mimetype);
 

@@ -2647,6 +2647,7 @@ export namespace Prisma {
     friendId: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    enabled: boolean | null
   }
 
   export type FriendMaxAggregateOutputType = {
@@ -2655,6 +2656,7 @@ export namespace Prisma {
     friendId: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    enabled: boolean | null
   }
 
   export type FriendCountAggregateOutputType = {
@@ -2663,6 +2665,7 @@ export namespace Prisma {
     friendId: number
     createdAt: number
     updatedAt: number
+    enabled: number
     _all: number
   }
 
@@ -2685,6 +2688,7 @@ export namespace Prisma {
     friendId?: true
     createdAt?: true
     updatedAt?: true
+    enabled?: true
   }
 
   export type FriendMaxAggregateInputType = {
@@ -2693,6 +2697,7 @@ export namespace Prisma {
     friendId?: true
     createdAt?: true
     updatedAt?: true
+    enabled?: true
   }
 
   export type FriendCountAggregateInputType = {
@@ -2701,6 +2706,7 @@ export namespace Prisma {
     friendId?: true
     createdAt?: true
     updatedAt?: true
+    enabled?: true
     _all?: true
   }
 
@@ -2796,6 +2802,7 @@ export namespace Prisma {
     friendId: number
     createdAt: Date
     updatedAt: Date
+    enabled: boolean
     _count: FriendCountAggregateOutputType | null
     _avg: FriendAvgAggregateOutputType | null
     _sum: FriendSumAggregateOutputType | null
@@ -2823,6 +2830,7 @@ export namespace Prisma {
     friendId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    enabled?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     friend?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["friend"]>
@@ -2835,9 +2843,10 @@ export namespace Prisma {
     friendId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    enabled?: boolean
   }
 
-  export type FriendOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "friendId" | "createdAt" | "updatedAt", ExtArgs["result"]["friend"]>
+  export type FriendOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "friendId" | "createdAt" | "updatedAt" | "enabled", ExtArgs["result"]["friend"]>
   export type FriendInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     friend?: boolean | UserDefaultArgs<ExtArgs>
@@ -2855,6 +2864,7 @@ export namespace Prisma {
       friendId: number
       createdAt: Date
       updatedAt: Date
+      enabled: boolean
     }, ExtArgs["result"]["friend"]>
     composites: {}
   }
@@ -3231,6 +3241,7 @@ export namespace Prisma {
     readonly friendId: FieldRef<"Friend", 'Int'>
     readonly createdAt: FieldRef<"Friend", 'DateTime'>
     readonly updatedAt: FieldRef<"Friend", 'DateTime'>
+    readonly enabled: FieldRef<"Friend", 'Boolean'>
   }
     
 
@@ -7630,7 +7641,8 @@ export namespace Prisma {
     userId: 'userId',
     friendId: 'friendId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    enabled: 'enabled'
   };
 
   export type FriendScalarFieldEnum = (typeof FriendScalarFieldEnum)[keyof typeof FriendScalarFieldEnum]
@@ -7884,6 +7896,7 @@ export namespace Prisma {
     friendId?: IntFilter<"Friend"> | number
     createdAt?: DateTimeFilter<"Friend"> | Date | string
     updatedAt?: DateTimeFilter<"Friend"> | Date | string
+    enabled?: BoolFilter<"Friend"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     friend?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -7894,6 +7907,7 @@ export namespace Prisma {
     friendId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    enabled?: SortOrder
     user?: UserOrderByWithRelationInput
     friend?: UserOrderByWithRelationInput
   }
@@ -7907,6 +7921,7 @@ export namespace Prisma {
     friendId?: IntFilter<"Friend"> | number
     createdAt?: DateTimeFilter<"Friend"> | Date | string
     updatedAt?: DateTimeFilter<"Friend"> | Date | string
+    enabled?: BoolFilter<"Friend"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     friend?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -7917,6 +7932,7 @@ export namespace Prisma {
     friendId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    enabled?: SortOrder
     _count?: FriendCountOrderByAggregateInput
     _avg?: FriendAvgOrderByAggregateInput
     _max?: FriendMaxOrderByAggregateInput
@@ -7933,6 +7949,7 @@ export namespace Prisma {
     friendId?: IntWithAggregatesFilter<"Friend"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Friend"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Friend"> | Date | string
+    enabled?: BoolWithAggregatesFilter<"Friend"> | boolean
   }
 
   export type Personal_ChannelsWhereInput = {
@@ -8328,6 +8345,7 @@ export namespace Prisma {
   export type FriendCreateInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
+    enabled?: boolean
     user: UserCreateNestedOneWithoutFriendsInput
     friend: UserCreateNestedOneWithoutFriendOfInput
   }
@@ -8338,11 +8356,13 @@ export namespace Prisma {
     friendId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    enabled?: boolean
   }
 
   export type FriendUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutFriendsNestedInput
     friend?: UserUpdateOneRequiredWithoutFriendOfNestedInput
   }
@@ -8353,6 +8373,7 @@ export namespace Prisma {
     friendId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FriendCreateManyInput = {
@@ -8361,11 +8382,13 @@ export namespace Prisma {
     friendId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    enabled?: boolean
   }
 
   export type FriendUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FriendUncheckedUpdateManyInput = {
@@ -8374,6 +8397,7 @@ export namespace Prisma {
     friendId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type Personal_ChannelsCreateInput = {
@@ -8891,6 +8915,7 @@ export namespace Prisma {
     friendId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    enabled?: SortOrder
   }
 
   export type FriendAvgOrderByAggregateInput = {
@@ -8905,6 +8930,7 @@ export namespace Prisma {
     friendId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    enabled?: SortOrder
   }
 
   export type FriendMinOrderByAggregateInput = {
@@ -8913,6 +8939,7 @@ export namespace Prisma {
     friendId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    enabled?: SortOrder
   }
 
   export type FriendSumOrderByAggregateInput = {
@@ -9793,6 +9820,7 @@ export namespace Prisma {
   export type FriendCreateWithoutUserInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
+    enabled?: boolean
     friend: UserCreateNestedOneWithoutFriendOfInput
   }
 
@@ -9801,6 +9829,7 @@ export namespace Prisma {
     friendId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    enabled?: boolean
   }
 
   export type FriendCreateOrConnectWithoutUserInput = {
@@ -9816,6 +9845,7 @@ export namespace Prisma {
   export type FriendCreateWithoutFriendInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
+    enabled?: boolean
     user: UserCreateNestedOneWithoutFriendsInput
   }
 
@@ -9824,6 +9854,7 @@ export namespace Prisma {
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    enabled?: boolean
   }
 
   export type FriendCreateOrConnectWithoutFriendInput = {
@@ -9963,6 +9994,7 @@ export namespace Prisma {
     friendId?: IntFilter<"Friend"> | number
     createdAt?: DateTimeFilter<"Friend"> | Date | string
     updatedAt?: DateTimeFilter<"Friend"> | Date | string
+    enabled?: BoolFilter<"Friend"> | boolean
   }
 
   export type FriendUpsertWithWhereUniqueWithoutFriendInput = {
@@ -10967,6 +10999,7 @@ export namespace Prisma {
     friendId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    enabled?: boolean
   }
 
   export type FriendCreateManyFriendInput = {
@@ -10974,6 +11007,7 @@ export namespace Prisma {
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    enabled?: boolean
   }
 
   export type Personal_ChannelsCreateManyUserInput = {
@@ -11009,6 +11043,7 @@ export namespace Prisma {
   export type FriendUpdateWithoutUserInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
     friend?: UserUpdateOneRequiredWithoutFriendOfNestedInput
   }
 
@@ -11017,6 +11052,7 @@ export namespace Prisma {
     friendId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FriendUncheckedUpdateManyWithoutUserInput = {
@@ -11024,11 +11060,13 @@ export namespace Prisma {
     friendId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FriendUpdateWithoutFriendInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutFriendsNestedInput
   }
 
@@ -11037,6 +11075,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FriendUncheckedUpdateManyWithoutFriendInput = {
@@ -11044,6 +11083,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type Personal_ChannelsUpdateWithoutUserInput = {

@@ -51,9 +51,23 @@ export class FriendService {
   async findAll(userId: number) {
     // 친구 목록 조회
     const rawFriends = await this.prismaService.friend.findMany({
-      where: { userId: userId },
-      select: {
+      where: {
+        AND: [
+          { enabled: true },
+          {
+            OR: [{ userId: userId }, { friendId: userId }],
+          },
+        ],
+      },
+      include: {
         friend: {
+          select: {
+            id: true,
+            userid: true,
+            name: true,
+          },
+        },
+        user: {
           select: {
             id: true,
             userid: true,
@@ -63,7 +77,12 @@ export class FriendService {
       },
     });
 
-    const friends = rawFriends.map((friend) => friend.friend);
+    console.log('rawFriends', rawFriends);
+
+    const friends = rawFriends.map((relation) => {
+      // userId가 나면 상대는 friendId고, 아니면 userId
+      return relation.userId === userId ? relation.friend : relation.user;
+    });
 
     return friends;
   }
