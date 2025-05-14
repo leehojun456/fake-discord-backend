@@ -3,7 +3,13 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const httpsOptions = {
+    key: process.env.SSL_KEY,
+    cert: process.env.SSL_CERT,
+  };
+  const app = await NestFactory.create(AppModule, {
+    httpsOptions,
+  });
   app.enableCors({ origin: '*' });
   const config = new DocumentBuilder()
     .setTitle('API Example')
