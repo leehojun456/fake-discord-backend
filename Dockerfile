@@ -9,9 +9,6 @@ RUN npm install
 # 전체 소스 복사
 COPY . .
 
-COPY .env .env
-
-
 # Prisma 관련 명령어 실행 (이 시점에 .env 필요)
 RUN npx prisma generate
 
