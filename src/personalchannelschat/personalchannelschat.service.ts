@@ -35,6 +35,7 @@ export class PersonalchannelschatService {
         user: {
           select: {
             name: true,
+            avatar: true,
           },
         },
       },
@@ -49,15 +50,15 @@ export class PersonalchannelschatService {
           .replace('T', ' ');
         return `${msg.userId}-${dateTime}`;
       }),
-    ) as (Personal_Channels_Chat & { user: { name: string } })[];
+    ) as Personal_Channels_Chat[];
 
     const result = grouped.map((group) => {
-      const { userId, createdAt, name } = group[0];
-      console.log(name);
+      const { userId, createdAt, user } = group[0];
+      console.log(user.name);
       return {
         userId,
         date: createdAt,
-        name: name,
+        name: user.name,
         messages: group,
       };
     });
