@@ -31,6 +31,13 @@ export class PersonalchannelschatService {
     const messages = await this.prismaService.personal_Channels_Chat.findMany({
       where: { channelId: id },
       orderBy: { createdAt: 'asc' },
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
 
     // userId + 'YYYY-MM-DD HH:mm' 기준으로 그룹핑
@@ -42,13 +49,15 @@ export class PersonalchannelschatService {
           .replace('T', ' ');
         return `${msg.userId}-${dateTime}`;
       }),
-    ) as Personal_Channels_Chat[][];
+    ) as (Personal_Channels_Chat & { user: { name: string } })[];
 
     const result = grouped.map((group) => {
-      const { userId, createdAt } = group[0];
+      const { userId, createdAt, name } = group[0];
+      console.log(name);
       return {
         userId,
         date: createdAt,
+        name: name,
         messages: group,
       };
     });
