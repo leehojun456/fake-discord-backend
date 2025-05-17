@@ -38,8 +38,10 @@ export class MyGateway {
     @ConnectedSocket() client: Socket,
   ): Promise<void> {
     body.userId = client.data.user.id; // 소켓에서 받은 userId를 body에 추가합니다.
+    console.log('Message received:', body);
     // 비동기 처리
     await this.personalchannelschatService.create(body);
     console.log('Message processed and chat created');
+    this.server.emit('personalChannelResponse', body);
   }
 }

@@ -11,6 +11,9 @@ import {
   UploadedFile,
   UseInterceptors,
   ParseFilePipe,
+  Res,
+  HttpStatus,
+  HttpCode,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -23,9 +26,10 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('/register')
+  @HttpCode(HttpStatus.CREATED)
   async create(@Body() createUserDto: CreateUserDto) {
-    console.log('createUserDto', createUserDto);
-    return this.userService.create(createUserDto);
+    await this.userService.create(createUserDto);
+    return { message: 'User created' };
   }
 
   @UseGuards(AuthGuard)

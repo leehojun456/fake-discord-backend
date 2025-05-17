@@ -8,9 +8,7 @@ async function bootstrap() {
     key: fs.readFileSync('./ssl/privkey.pem', 'utf8'),
     cert: fs.readFileSync('./ssl/fullchain.pem', 'utf8'),
   };
-  const app = await NestFactory.create(AppModule, {
-    httpsOptions,
-  });
+  const app = await NestFactory.create(AppModule);
   app.enableCors({ origin: '*' });
   const config = new DocumentBuilder()
     .setTitle('API Example')

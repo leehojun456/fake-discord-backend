@@ -1,14 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Res } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdatePhone, UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import bcrypt from 'bcrypt';
-import { randomInt } from 'crypto';
-import * as AWS from 'aws-sdk';
-import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { S3Service } from 'src/aws/s3.service';
-import { fileTypeFromBuffer } from 'file-type';
 
 @Injectable()
 export class UserService {
@@ -25,7 +20,6 @@ export class UserService {
         password: hashedPassword,
       },
     });
-    return 'This action adds a new user';
   }
 
   findAll() {
@@ -41,9 +35,12 @@ export class UserService {
       return null;
     }
 
-    if (user.avatar != null && user.banner != null) {
-      // 파일 접근 가능한 URL 구성
+    // 파일 접근 가능한 URL 구성
+    if (user.avatar != null) {
       user.avatar = (await this.s3Service.getSignedUrl(user.avatar)).toString();
+    }
+
+    if (user.banner != null) {
       user.banner = (await this.s3Service.getSignedUrl(user.banner)).toString();
     }
 

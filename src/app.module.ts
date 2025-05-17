@@ -14,6 +14,8 @@ import { PersonalchannelschatModule } from './personalchannelschat/personalchann
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MailModule } from './mail/mail.module';
 import { S3Service } from './aws/s3.service';
+import { OgPreviewService } from './og-preview/og-preview.service';
+import { OgPreviewController } from './og-preview/og-preview.controller';
 
 @Module({
   imports: [
@@ -26,7 +28,7 @@ import { S3Service } from './aws/s3.service';
     GatewayModule,
     PersonalchannelschatModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, PrismaService],
+  controllers: [AppController, OgPreviewController],
+  providers: [AppService, PrismaService, OgPreviewService],
 })
 export class AppModule {}
