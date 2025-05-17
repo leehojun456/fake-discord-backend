@@ -87,11 +87,9 @@ export class PersonalchannelschatService {
         const signedAvatar = await getSignedAvatar.call(this, user.avatar); // avatar URL 처리
 
         return {
-          user: {
-            userId,
-            name: user.name,
-            avatar: signedAvatar,
-          },
+          userId,
+          name: user.name,
+          avatar: signedAvatar,
           date: createdAt, // 생성일자
           messages: group.map((msg) => ({
             id: msg.id,
