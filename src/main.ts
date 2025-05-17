@@ -1,13 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as fs from 'fs';
 
 async function bootstrap() {
-  const httpsOptions = {
-    key: fs.readFileSync('./ssl/privkey.pem', 'utf8'),
-    cert: fs.readFileSync('./ssl/fullchain.pem', 'utf8'),
-  };
   const app = await NestFactory.create(AppModule);
   app.enableCors({ origin: '*' });
   const config = new DocumentBuilder()
