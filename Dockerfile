@@ -6,11 +6,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# .env 먼저 복사 (Prisma가 사용할 수 있도록)
-COPY .env .env
-
 # 전체 소스 복사
 COPY . .
+
+COPY .env .env
+
 
 # Prisma 관련 명령어 실행 (이 시점에 .env 필요)
 RUN npx prisma generate
