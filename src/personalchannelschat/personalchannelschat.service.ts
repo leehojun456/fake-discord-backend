@@ -95,6 +95,7 @@ export class PersonalchannelschatService {
             id: msg.id,
             createdAt: msg.createdAt,
             content: msg.content, // 메시지 본문만 추출
+            userId: msg.userId,
           })),
         };
       }),
