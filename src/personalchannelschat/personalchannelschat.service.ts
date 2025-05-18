@@ -105,6 +105,17 @@ export class PersonalchannelschatService {
     return result;
   }
 
+  async updateMessage(
+    id: number,
+    messageId: number,
+    updatePersonalchannelschatDto: UpdatePersonalchannelschatDto,
+  ) {
+    await this.prismaService.personal_Channels_Chat.update({
+      where: { id: messageId },
+      data: updatePersonalchannelschatDto,
+    });
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} personalchannelschat`;
   }

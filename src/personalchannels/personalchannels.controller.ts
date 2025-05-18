@@ -18,6 +18,7 @@ import { AuthGuard } from 'src/auth/auth.guard';
 
 import { PersonalchannelschatService } from 'src/personalchannelschat/personalchannelschat.service';
 import { ApiOperation } from '@nestjs/swagger';
+import { UpdatePersonalchannelschatDto } from 'src/personalchannelschat/dto/update-personalchannelschat.dto';
 
 @Controller('personalchannels')
 export class PersonalchannelsController {
@@ -77,6 +78,24 @@ export class PersonalchannelsController {
   @Get(':id/messages')
   async findAllMessages(@Param('id', ParseIntPipe) id: number) {
     return await this.personalchannelschatService.findAllMessages(id);
+  }
+
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: '특정 개인 채널의 특정 메세지를 수정',
+    description: '특정 개인 채널의 특정 메세지를 수정합니다',
+  })
+  @Patch(':id/messages/:messageId')
+  async updateMessage(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('messageId', ParseIntPipe) messageId: number,
+    @Body() updatePersonalchannelschatDto: UpdatePersonalchannelschatDto,
+  ) {
+    return await this.personalchannelschatService.updateMessage(
+      id,
+      messageId,
+      updatePersonalchannelschatDto,
+    );
   }
 
   @UseGuards(AuthGuard)
