@@ -42,7 +42,7 @@ export class PersonalchannelschatService {
   async findAllMessages(id: number) {
     // 1. 해당 채널의 메시지들을 가져오고, 유저 정보도 함께 include
     const messages = await this.prismaService.personal_Channels_Chat.findMany({
-      where: { channelId: id },
+      where: { channelId: id, enabled: false },
       orderBy: { createdAt: 'asc' },
       include: {
         user: {
