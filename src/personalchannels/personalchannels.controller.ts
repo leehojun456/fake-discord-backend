@@ -111,11 +111,7 @@ export class PersonalchannelsController {
     @Param('id', ParseIntPipe) id: number,
     @Param('messageId', ParseIntPipe) messageId: number,
   ) {
-    return await this.personalchannelschatService.deleteMessage(
-      id,
-      messageId,
-      req.user.id,
-    );
+    return await this.personalchannelschatService.deleteMessage(messageId);
   }
 
   @UseGuards(AuthGuard)
