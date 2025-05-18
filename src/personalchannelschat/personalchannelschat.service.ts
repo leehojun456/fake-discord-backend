@@ -120,7 +120,7 @@ export class PersonalchannelschatService {
   async deleteMessage(messageId: number) {
     this.prismaService.personal_Channels_Chat.update({
       where: { id: messageId },
-      data: { enabled: true },
+      data: { enabled: false },
     });
   }
 
