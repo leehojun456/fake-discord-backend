@@ -117,6 +117,13 @@ export class PersonalchannelschatService {
     });
   }
 
+  async deleteMessage(id: number, messageId: number, userId: number) {
+    this.prismaService.personal_Channels_Chat.update({
+      where: { id: messageId, userId: userId, channelId: id },
+      data: { enabled: true },
+    });
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} personalchannelschat`;
   }

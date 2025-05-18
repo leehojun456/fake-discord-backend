@@ -10,6 +10,7 @@ import {
   Request,
   ParseIntPipe,
   Response,
+  HttpCode,
 } from '@nestjs/common';
 import { PersonalchannelsService } from './personalchannels.service';
 import { CreatePersonalchannelDto } from './dto/create-personalchannel.dto';
@@ -95,6 +96,25 @@ export class PersonalchannelsController {
       id,
       messageId,
       updatePersonalchannelschatDto,
+    );
+  }
+
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: '특정 개인 채널의 내 메세지를 삭제',
+    description: '특정 개인 채널의 내 메세지를 삭제합니다',
+  })
+  @HttpCode(204)
+  @Patch(':id/messages/:messageId')
+  async deleteMessage(
+    @Request() req: any,
+    @Param('id', ParseIntPipe) id: number,
+    @Param('messageId', ParseIntPipe) messageId: number,
+  ) {
+    return await this.personalchannelschatService.deleteMessage(
+      id,
+      messageId,
+      req.user.id,
     );
   }
 
