@@ -105,7 +105,7 @@ export class PersonalchannelsController {
     description: '특정 개인 채널의 내 메세지를 삭제합니다',
   })
   @HttpCode(204)
-  @Patch(':id/messages/:messageId')
+  @Delete(':id/messages/:messageId')
   async deleteMessage(
     @Request() req: any,
     @Param('id', ParseIntPipe) id: number,
