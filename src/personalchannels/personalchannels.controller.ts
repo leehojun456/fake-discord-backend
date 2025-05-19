@@ -11,6 +11,7 @@ import {
   ParseIntPipe,
   Response,
   HttpCode,
+  Query,
 } from '@nestjs/common';
 import { PersonalchannelsService } from './personalchannels.service';
 import { CreatePersonalchannelDto } from './dto/create-personalchannel.dto';
@@ -20,6 +21,7 @@ import { AuthGuard } from 'src/auth/auth.guard';
 import { PersonalchannelschatService } from 'src/personalchannelschat/personalchannelschat.service';
 import { ApiOperation } from '@nestjs/swagger';
 import { UpdatePersonalchannelschatDto } from 'src/personalchannelschat/dto/update-personalchannelschat.dto';
+import { GetPersonalchannelschatDto } from 'src/personalchannelschat/dto/get-personalchannelschat.dto';
 
 @Controller('personalchannels')
 export class PersonalchannelsController {
@@ -77,8 +79,11 @@ export class PersonalchannelsController {
     description: '특정 개인 채널의 메세지를 조회합니다',
   })
   @Get(':id/messages')
-  async findAllMessages(@Param('id', ParseIntPipe) id: number) {
-    return await this.personalchannelschatService.findAllMessages(id);
+  async findAllMessages(
+    @Param('id') id: string,
+    @Query() query: GetPersonalchannelschatDto,
+  ) {
+    return await this.personalchannelschatService.findAllMessages(+id, query);
   }
 
   @UseGuards(AuthGuard)
