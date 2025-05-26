@@ -47,56 +47,20 @@ export class PersonalchannelschatService {
 
   async findAllMessages(id: number, query: GetPersonalchannelschatDto) {
     console.log('findAllMessages', id, query);
-    // 1. 해당 채널의 메시지들을 가져오고, 유저 정보도 함께 include
-    // const messages = await this.prismaService.personal_Channels_Chat.findMany({
-    //   where: {
-    //     channelId: id,
-    //     enabled: true,
-    //     ...(query.cursor && {
-    //       id: { gt: Number(query.cursor) }, // id가 커서보다 큰 (즉, 이후 메시지)
-    //     }),
-    //   },
-    //   orderBy: { createdAt: 'asc' },
-    //   take: Number(query.limit),
-    //   include: {
-    //     user: {
-    //       select: {
-    //         name: true,
-    //         avatar: true,
-    //       },
-    //     },
-    //   },
-    // });
-
-    const blocks = await this.prismaService.$queryRaw<ChatBlock[]>`
-    SELECT
-      p.userId,
-      DATE_FORMAT(p.createdAt, '%Y-%m-%dT%H:%iZ') as timeGroup,
-      JSON_ARRAYAGG(JSON_OBJECT(  
-        'id', p.id,
-        'content', p.content,
-        'createdAt', p.createdAt,
-        'userId', p.userId
-      )) as messages,
-      MAX(p.createdAt) as latestMessage,
-      u.name as name,
-      u.avatar as avatar
-    FROM Personal_Channels_Chat p
-    JOIN User u ON u.id = p.userId
-    WHERE
-      p.channelId = ${id}
-      AND p.enabled = true
-      ${query.cursor ? Prisma.sql`AND p.createdAt > ${query.cursor}` : Prisma.empty}
-    GROUP BY p.userId, timeGroup
-    ORDER BY latestMessage ASC
-    LIMIT ${Number(query.limit)};
-  `;
-
-    for (const block of blocks) {
-      if (block.avatar)
-        block.avatar = await this.s3Service.getSignedUrl(block.avatar);
-    }
-    return blocks;
+    const sortOrder =
+      query.sort === 'asc' || query.sort === 'desc' ? query.sort : 'desc';
+    // 1. 채널 ID와 커서에 따라 메시지를 가져옵니다.
+    const messages = await this.prismaService.personal_Channels_Chat.findMany({
+      where: {
+        channelId: id,
+        enabled: true,
+      },
+      orderBy: {
+        createdAt: sortOrder,
+      },
+      take: Number(query.limit),
+    });
+    return messages;
   }
 
   async updateMessage(

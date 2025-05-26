@@ -46,6 +46,13 @@ export class UserController {
   }
 
   @UseGuards(AuthGuard)
+  @Get(':id/avatar')
+  async findAvatar(@Param('id') id: string) {
+    console.log('findAvatar', id);
+    return await this.userService.findAvatar(+id);
+  }
+
+  @UseGuards(AuthGuard)
   @Patch('/phone')
   async updatePhone(@Request() req: any, @Body() updatePhone: UpdatePhone) {
     const userId = req.user.id;

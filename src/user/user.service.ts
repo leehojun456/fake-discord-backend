@@ -47,6 +47,25 @@ export class UserService {
     return user;
   }
 
+  async findAvatar(id: number) {
+    const user = await this.prismaService.user.findUnique({
+      select: {
+        avatar: true,
+      },
+      where: { id },
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    if (user.avatar) {
+      user.avatar = (await this.s3Service.getSignedUrl(user.avatar)).toString();
+    }
+
+    return user;
+  }
+
   async findUser(id: number) {
     const user = await this.prismaService.user.findUnique({
       where: { id },
