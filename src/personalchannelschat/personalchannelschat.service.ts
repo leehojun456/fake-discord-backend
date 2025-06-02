@@ -46,21 +46,52 @@ export class PersonalchannelschatService {
   }
 
   async findAllMessages(id: number, query: GetPersonalchannelschatDto) {
-    console.log('findAllMessages', id, query);
     const sortOrder =
       query.sort === 'asc' || query.sort === 'desc' ? query.sort : 'desc';
-    // 1. 채널 ID와 커서에 따라 메시지를 가져옵니다.
-    const messages = await this.prismaService.personal_Channels_Chat.findMany({
-      where: {
-        channelId: id,
-        enabled: true,
-      },
-      orderBy: {
-        createdAt: sortOrder,
-      },
-      take: Number(query.limit),
-    });
-    return messages;
+    const limit = Number(query.limit) || 20;
+
+    const cursorCondition =
+      query.cursor !== undefined
+        ? {
+            id: {
+              [sortOrder === 'asc' ? 'gt' : 'lt']: Number(query.cursor),
+            },
+          }
+        : {};
+
+    const [totalCount, messages] = await this.prismaService.$transaction([
+      this.prismaService.personal_Channels_Chat.count({
+        where: {
+          channelId: id,
+          enabled: true,
+        },
+      }),
+      this.prismaService.personal_Channels_Chat.findMany({
+        where: {
+          channelId: id,
+          enabled: true,
+          ...cursorCondition,
+        },
+        orderBy: {
+          id: sortOrder,
+        },
+        take: limit,
+        include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              avatar: true,
+            },
+          },
+        },
+      }),
+    ]);
+
+    return {
+      totalCount,
+      messages,
+    };
   }
 
   async updateMessage(

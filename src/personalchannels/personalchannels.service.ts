@@ -143,6 +143,7 @@ export class PersonalchannelsService {
             id: true,
             name: true,
             avatar: true,
+            userid: true,
           },
         },
       },
